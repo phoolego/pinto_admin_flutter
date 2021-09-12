@@ -2,7 +2,9 @@
     package="com.example.pinto_admin_flutter">
    <application
         android:label="pinto_admin_flutter"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/my_backup_rules">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
