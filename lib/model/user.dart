@@ -1,6 +1,7 @@
 class User {
   int userId=0;
-  String username='';
+  String firstname='';
+  String lastname='';
   String email='';
   String address='';
   String contact='';
@@ -8,7 +9,8 @@ class User {
 
   User(Map<String,dynamic> jsonUser){
     userId = jsonUser['user_id'];
-    username = jsonUser['username'];
+    firstname = jsonUser['firstname'];
+    lastname = jsonUser['lastname'];
     email = jsonUser['email'];
     address = jsonUser['address'];
     contact = jsonUser['contact'];
@@ -16,7 +18,8 @@ class User {
   }
   User.notLogin(){
     userId=0;
-    username='';
+    firstname='';
+    lastname='';
     email='';
     address='';
     contact='';

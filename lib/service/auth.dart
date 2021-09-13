@@ -9,7 +9,7 @@ class Auth {
 
   static Future<User> login(String? email,String? password) async {
     try {
-      var response = await Api.dio.post('/login-email',
+      var response = await Api.dio.post('/login-email-admin',
           data:{'email':email,'password':password}
       );
       user = User(response.data);

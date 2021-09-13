@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/screen/auth/auth_controller.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
