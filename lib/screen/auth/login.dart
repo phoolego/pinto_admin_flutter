@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/service/auth.dart';
+import 'package:pinto_admin_flutter/constant.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -8,39 +11,159 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  String email = "";
+  String password = "";
+  String errorMessage = '';
   bool _loading = false;
-  _login() async {
-    try{
+  _login(BuildContext context) async {
+    try {
       setState(() {
-        _loading=true;
+        _loading = true;
       });
-      await Auth.login('admin1@mail', 'ad1234*');
-      print(Auth.user.userId.toString());
-    }catch(err){
+      await Auth.login(email, password);
+      Navigator.pushReplacementNamed(context, '/');
+    } catch (err) {
       print(err);
+      errorMessage = err.toString();
+      setState(() {
+        _loading = false;
+      });
     }
-    setState(() {
-      _loading=false;
-    });
   }
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: _loading?
-      Center(
-        child: Text('login loading...')
-      ):
-      Center(
-        child: ElevatedButton(
-          onPressed: ()async{
-            await _login();
-            Navigator.pushReplacementNamed(context,'/');
-          },
-          child: const Text('login'),
-        ),
+      body: SafeArea(
+        child: _loading
+            ? const Center(child: Text('login loading...'))
+            : SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              width: 200,
+                              height: 200,
+                              child: Image.asset('assets/images/Icons.jpg'),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'ผู้ดูแลระบบ',
+                                  style: kNormalTextStyle,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ลงชื่อเข้าใช้',
+                              style: kLoginHeadingTextStyle,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(3),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: 'อีเมล',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    return 'กรุณากรอกอีเมล';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onChanged: (val) {
+                                  setState(() {
+                                    email = val;
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Padding(
+                              padding: EdgeInsets.all(3),
+                              child: TextFormField(
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  hintText: 'รหัสผ่าน',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    // validate password must longer than 6 character
+                                    return 'กรุณากรอกรหัสผ่าน';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onChanged: (val) {
+                                  setState(() {
+                                    password = val;
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(height: 5),
+                            Text(
+                              errorMessage,
+                              style: kStatusNotCompleteTextColor,
+                            ),
+                            // SizedBox(height: 10),
+                            PintoButton(
+                                width: screenWidth * 0.4,
+                                label: 'เข้าสู่ระบบ',
+                                function: () async {
+                                  if (_formKey.currentState!.validate()) {
+                                    await _login(context);
+                                  }
+                                },
+                                buttonColor: deepBlue),
+                            SizedBox(height: 10),
+                            PintoButton(
+                                width: screenWidth * 0.4,
+                                label: 'สร้างบัญชี',
+                                function: () async {
+                                  Navigator.pushNamed(context, '/register');
+                                },
+                                buttonColor: deepBlue),
+                            SizedBox(height: 10),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
       ),
     );
   }
