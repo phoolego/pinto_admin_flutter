@@ -85,6 +85,7 @@ class _HomepageState extends State<Homepage> {
                       child: ListView(
                     children: [
                       ProductCard.withoutProductID(
+<<<<<<< HEAD
                           productName: 'ผักกาดขาว',
                           inStock: 10,
                           function: () {}),
@@ -111,6 +112,34 @@ class _HomepageState extends State<Homepage> {
                       ProductCard.withoutProductID(
                           productName: 'productName',
                           inStock: 12,
+=======
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+                          function: () {}),
+                      ProductCard.withoutProductID(
+                          productName: 'productName',
+                          dateString: 'dateString',
+>>>>>>> dev
                           function: () {}),
                     ],
                   )),
