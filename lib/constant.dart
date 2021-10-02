@@ -5,6 +5,13 @@ const kHeadingTextStyle = TextStyle(
   fontSize: 18.0,
 );
 
+const kContentTextWhite = TextStyle(
+  fontFamily: 'SansThai',
+  fontSize: 16.0,
+  color: deepWhite,
+  fontWeight: FontWeight.bold
+);
+
 const kSubHeadingBoldTextStyle = TextStyle(
   fontFamily: 'SansThai',
   fontSize: 16.0,

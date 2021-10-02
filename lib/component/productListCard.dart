@@ -2,57 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 
 class ProductCard extends StatelessWidget {
-
   String productName = '';
-  String dateString = '';
+  double inStock = 0;
   int productId = 0;
   var function;
 
   //not sure about img
 
-  ProductCard({
-    required this.productName,
-    required this.dateString,
-    required this.productId,
-    required this.function});
+  ProductCard(
+      {required this.productName,
+      required this.inStock,
+      required this.productId,
+      required this.function});
 
-  ProductCard.withoutProductID({
-    required this.productName,
-    required this.dateString,
-    required this.function});
-
+  ProductCard.withoutProductID(
+      {required this.productName,
+      required this.inStock,
+      required this.function});
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: function,
       child: Container(
-        height: 100,
+        height: 130,
         width: 500,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
+              alignment: AlignmentDirectional.center,
+              height: 100,
+              width: screenWidth * 0.8,
+              margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: deepBlue,
+              ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: Image.asset('assets/images/Icons.jpg'),
-                    //TODO- fix image to dynamic
-                  ),
                   Container(
                     padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
                           productName,
-                          style: kHeadingTextStyle,
+                          style: kContentTextWhite,
                         ),
                         Text(
-                          'Date: ${dateString}',
-                          style: kContentTextStyle,
+                          'คลัง: ${inStock}',
+                          style: kContentTextWhite,
                         )
                       ],
                     ),
@@ -61,11 +65,16 @@ class ProductCard extends StatelessWidget {
                   //sorry for lazy na ;-;
                   SizedBox(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(child: Icon(Icons.chevron_right)),
-                        ],
-                      ))
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(top: 10,right: 5),
+                          child: Icon(
+                        Icons.chevron_right,
+                        color: deepWhite,
+                      )),
+                    ],
+                  ))
                 ],
               ),
             ),
