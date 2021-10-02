@@ -87,31 +87,31 @@ class _HomepageState extends State<Homepage> {
                       ProductCard.withoutProductID(
                           productName: 'ผักกาดขาว',
                           inStock: 10,
+                          unit: 'กรัม',
                           function: () {}),
                       ProductCard.withoutProductID(
-                          productName: 'กระเจี๊ยบ',
-                          inStock: 22,
+                          productName: 'ผักกาดขาว',
+                          inStock: 10,
+                          unit: 'กรัม',
                           function: () {}),
                       ProductCard.withoutProductID(
-                          productName: 'productName',
-                          inStock: 20,
+                          productName: 'ผักกาดขาว',
+                          inStock: 10,
+                          unit: 'กรัม',
                           function: () {}),
                       ProductCard.withoutProductID(
-                          productName: 'productName',
-                          inStock: 5,
+                          productName: 'ผักกาดขาว',
+                          inStock: 10,
+                          unit: 'กรัม',
                           function: () {}),
                       ProductCard.withoutProductID(
-                          productName: 'productName',
-                          inStock: 2,
+                          productName: 'ผักกาดขาว',
+                          inStock: 10,
+                          unit: 'กรัม',
                           function: () {}),
-                      ProductCard.withoutProductID(
-                          productName: 'productName',
-                          inStock: 32,
-                          function: () {}),
-                      ProductCard.withoutProductID(
-                          productName: 'productName',
-                          inStock: 12,
-                          function: () {}),
+
+
+
                     ],
                   )),
                 )

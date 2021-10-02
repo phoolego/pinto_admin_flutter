@@ -4,6 +4,7 @@ import 'package:pinto_admin_flutter/constant.dart';
 class ProductCard extends StatelessWidget {
   String productName = '';
   double inStock = 0;
+  String? unit = '';
   int productId = 0;
   var function;
 
@@ -12,11 +13,13 @@ class ProductCard extends StatelessWidget {
   ProductCard(
       {required this.productName,
       required this.inStock,
+      required this.unit,
       required this.productId,
       required this.function});
 
   ProductCard.withoutProductID(
       {required this.productName,
+      required this.unit,
       required this.inStock,
       required this.function});
 
@@ -36,7 +39,7 @@ class ProductCard extends StatelessWidget {
               alignment: AlignmentDirectional.center,
               height: 100,
               width: screenWidth * 0.8,
-              margin: EdgeInsets.fromLTRB(10, 20, 20, 10),
+              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: deepBlue,
@@ -45,18 +48,24 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          productName,
-                          style: kContentTextWhite,
-                        ),
-                        Text(
-                          'คลัง: ${inStock}',
-                          style: kContentTextWhite,
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                productName,
+                                style: kContentTextWhite,
+                              ),
+                              Text(
+                                'คลัง: ${inStock} ${unit}',
+                                style: kContentTextWhite,
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -68,11 +77,11 @@ class ProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 10,right: 5),
+                          padding: EdgeInsets.only(top: 10, right: 10),
                           child: Icon(
-                        Icons.chevron_right,
-                        color: deepWhite,
-                      )),
+                            Icons.more_horiz,
+                            color: deepWhite,
+                          )),
                     ],
                   ))
                 ],
