@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
-import 'package:pinto_admin_flutter/screen/constant.dart';
 import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/component/productListCard.dart';
 
@@ -76,7 +75,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 SizedBox(
-                  height: 3,
+                  height: 10,
                 ),
                 Container(
                   width: screenWidth * 0.8,
@@ -85,10 +84,12 @@ class _HomepageState extends State<Homepage> {
                       child: ListView(
                     children: [
                       ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว',
+                          productName: 'ผักกาดขาว (mockData)',
                           inStock: 10,
                           unit: 'กรัม',
-                          function: () {}),
+                          function: () {
+                            Navigator.pushNamed(context, '/stock/stockDashboard');
+                          }),
                       ProductCard.withoutProductID(
                           productName: 'ผักกาดขาว',
                           inStock: 10,
@@ -109,8 +110,6 @@ class _HomepageState extends State<Homepage> {
                           inStock: 10,
                           unit: 'กรัม',
                           function: () {}),
-
-
 
                     ],
                   )),

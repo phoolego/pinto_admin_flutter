@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/screen/auth/auth_controller.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
+import 'package:pinto_admin_flutter/screen/homepage.dart';
+import 'package:pinto_admin_flutter/screen/stock_dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const AuthController(),
         '/login': (context) => const Login(),
+        '/stock': (context) => const Homepage(),
+        '/stock/stockDashboard': (context) => StockDashboard(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

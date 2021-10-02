@@ -5,11 +5,22 @@ const kHeadingTextStyle = TextStyle(
   fontSize: 18.0,
 );
 
-const kContentTextWhite = TextStyle(
+const kContentTextWhiteBold = TextStyle(
   fontFamily: 'SansThai',
   fontSize: 16.0,
   color: deepWhite,
   fontWeight: FontWeight.bold
+);
+const kContentTextWhite = TextStyle(
+    fontFamily: 'SansThai',
+    fontSize: 16.0,
+    color: deepWhite,
+);
+
+const kContentTextMedBlack = TextStyle(
+  fontFamily: 'SansThai',
+  fontSize: 16.0,
+  color: mediumBlack,
 );
 
 const kSubHeadingBoldTextStyle = TextStyle(

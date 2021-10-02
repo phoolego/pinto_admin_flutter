@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 
-class ProductCard extends StatelessWidget {
-  String productName = '';
-  double inStock = 0;
+class FarmInfoCard extends StatelessWidget {
+  String farmName = '';
+  double inFarm = 0;
   String? unit = '';
-  int productId = 0;
+  int farmId = 0;
   var function;
 
   //not sure about img
 
-  ProductCard(
-      {required this.productName,
-      required this.inStock,
-      required this.unit,
-      required this.productId,
-      required this.function});
+  FarmInfoCard(
+      {required this.farmName,
+        required this.inFarm,
+        required this.unit,
+        required this.farmId,
+        required this.function});
 
-  ProductCard.withoutProductID(
-      {required this.productName,
-      required this.unit,
-      required this.inStock,
-      required this.function});
+  FarmInfoCard.withoutProductID(
+      {required this.farmName,
+        required this.unit,
+        required this.inFarm,
+        required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +30,14 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-        height: screenWidth*0.28,
-        width: screenWidth*0.8,
+        height: 130,
+        width: 500,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               alignment: AlignmentDirectional.center,
-              height: 100,
+              height: screenHeight*0.17,
               width: screenWidth * 0.8,
               margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
               decoration: BoxDecoration(
@@ -57,12 +57,21 @@ class ProductCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                productName,
+                                farmName,
                                 style: kContentTextWhite,
                               ),
-                              Text(
-                                'คลัง: ${inStock} ${unit}',
-                                style: kContentTextWhite,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    'คลัง: ${inFarm} ',
+                                    style: kContentTextWhite,
+                                  ),
+                                  Text(
+                                    '${unit}',
+                                    style: kContentTextWhite,
+                                  ),
+                                ],
                               )
                             ],
                           ),
@@ -74,16 +83,16 @@ class ProductCard extends StatelessWidget {
                   //sorry for lazy na ;-;
                   SizedBox(
                       child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.only(top: 10, right: 10),
-                          child: Icon(
-                            Icons.more_horiz,
-                            color: deepWhite,
-                          )),
-                    ],
-                  ))
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.only(top: 10, right: 10),
+                              child: Icon(
+                                Icons.more_horiz,
+                                color: deepWhite,
+                              )),
+                        ],
+                      ))
                 ],
               ),
             ),
