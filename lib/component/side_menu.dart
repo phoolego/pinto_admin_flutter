@@ -51,35 +51,38 @@ SideMenu({this.firstName, this.lastName, this.role});
             ),
             ListTile(
               leading: Icon(Icons.home),
-              title: Text('Home'),
+              title: Text('จัดการคลังสินค้า',style: kContentTextStyle,),
               onTap: (){
                 //Navigator.pop(context);
-                print('Home');
+                print('จัดการคลังสินค้า');
               },
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart),
-              title: Text('Cart'),
+              title: Text('ตารางรับซื้อ',style: kContentTextStyle,),
               onTap: (){
-                Navigator.pop(context);
                 //Navigator.pop it will just close side menu
-                print('cart');
+                print('ตารางรับซื้อ');
               },
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart),
-              title: Text('sale product (testing)'),
+              title: Text('ยืนยันการจ่ายเงินจากลูกค้า',style: kContentTextStyle),
               onTap: (){
-                Navigator.pushNamed(context, '/product/sale',);
+               print('ยืนยันการจ่ายเงินจากลูกค้า');
               },
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
-              title: Text('Logout'),
+              title: Text('ออกจากระบบ',style: kContentTextStyle),
               onTap: ()async {
                 await Auth.logout();
                 Navigator.pushReplacementNamed(context,'/');
               },
+              // onPressed: () async {
+              //   await Auth.logout();
+              //   Navigator.pushReplacementNamed(context,'/');
+              // },
             ),
           ],
         ),
