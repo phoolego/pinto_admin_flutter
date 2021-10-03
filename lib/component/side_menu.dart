@@ -76,8 +76,8 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.shopping_cart),
               title: Text('StatusWithFarmer',style: kContentTextStyle),
               onTap: (){
-
-                print('StatusWithFarmer');
+                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer');
+                print('StatusWithFarmer(DEMO)');
               },
             ),
             ListTile(
