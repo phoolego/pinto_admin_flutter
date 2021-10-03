@@ -30,16 +30,16 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-        height: screenWidth*0.28,
+        height: screenHeight*0.15,
         width: screenWidth*0.8,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               alignment: AlignmentDirectional.center,
-              height: 100,
+              height: screenHeight*0.12,
               width: screenWidth * 0.8,
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              margin: EdgeInsets.fromLTRB(screenWidth*0.015, 0 , screenWidth*0.015, screenHeight*0.01),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: deepBlue,
@@ -48,7 +48,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                    padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

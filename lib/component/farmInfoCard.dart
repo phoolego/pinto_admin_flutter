@@ -30,16 +30,14 @@ class FarmInfoCard extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-        height: 130,
-        width: 500,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               alignment: AlignmentDirectional.center,
               height: screenHeight*0.17,
-              width: screenWidth * 0.8,
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              width: screenWidth * 0.6,
+              margin: EdgeInsets.fromLTRB(screenWidth*0.1, 0, screenWidth*0.1, 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: deepBlue,
