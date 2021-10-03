@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
+import 'package:pinto_admin_flutter/component/pinto_button.dart';
 
 class StatusWithFarmer extends StatefulWidget {
   @override
@@ -18,19 +19,39 @@ class _StatusWithFarmerState extends State<StatusWithFarmer> {
   double pricePerUnit = 3;
   String transportDate = '1/7/2020';
   String strStatus = '';
+  String buttonLabel ='test';
+  Function buttonFunc = (){};
 
-  String checkStatus(int status) {
+
+
+
+  void checkStatus(int status) {
     if (status == 1) {
       strStatus = 'ยังไม่ได้รับผลิตภัณฑ์';
-      return strStatus;
+      buttonLabel = 'ได้รับผลิตภัณฑ์แล้ว';
+      print('ได้รับผลิตภัณฑ์แล้ว');
     } else if (status == 2) {
       strStatus = 'ส่งผลผลิตแล้ว';
-      return strStatus;
+      buttonLabel = '+ เพิ่มรูปภาพหลักฐานการชำระเงิน';
+      print('+ เพิ่มรูปภาพหลักฐานการชำระเงิน');
     } else if (status == 3) {
       strStatus = 'ชำระเงินแล้ว';
-      return strStatus;
     } else {
-      return 'INVALID';
+      print('INVALID');
+    }
+  }
+
+  void checkButtonStatus(int status){
+    if (status == 1) {
+      buttonLabel = 'ได้รับผลิตภัณฑ์แล้ว';
+      print('ได้รับผลิตภัณฑ์แล้ว');
+    } else if (status == 2) {
+      buttonLabel = '+ เพิ่มรูปภาพหลักฐานการชำระเงิน';
+      print('+ เพิ่มรูปภาพหลักฐานการชำระเงิน');
+    } else if (status == 3) {
+      strStatus = 'ชำระเงินแล้ว';
+    } else {
+      print('INVALID');
     }
   }
 
@@ -57,8 +78,10 @@ class _StatusWithFarmerState extends State<StatusWithFarmer> {
   @override
   void initState() {
     // TODO: implement initState
+    checkButtonStatus(status);
     checkStatus(status);
     calculateTotalPrice(pricePerUnit);
+    print(buttonLabel);
   }
 
   @override
@@ -82,7 +105,6 @@ class _StatusWithFarmerState extends State<StatusWithFarmer> {
       ),
       body: Container(
         child: Column(
-
           children: [
             Container(
               height: screenHeight * 0.13,
@@ -119,55 +141,115 @@ class _StatusWithFarmerState extends State<StatusWithFarmer> {
                 ],
               ),
             ),
-            SizedBox(height: screenHeight*0.04,),
+            SizedBox(
+              height: screenHeight * 0.04,
+            ),
             Container(
-              padding: EdgeInsets.fromLTRB(screenWidth*0.1, 0, screenWidth*0.2, 10),
-              child:Column(
+              padding: EdgeInsets.fromLTRB(
+                  screenWidth * 0.1, 0, screenWidth * 0.2, 10),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('เกษตรกร: \n$farmName',style: kContentTextStyle,),
-                  SizedBox(height: screenHeight*0.02,),
-                  Row(children: [
-                    Column(
-                      children: [
-                        Text('วันที่เริ่มปลูก: ',style: kContentTextStyle,),
-                        Text(stDate,style: kContentTextStyle,),
-                        SizedBox(height: screenHeight*0.02,)
-                      ],
-                    ),
-                    Expanded(child: Text(' ')),
-                    Column(
-                      children: [
-                        Text('วันที่เก็บเกี่ยว: ',style: kContentTextStyle,),
-                        Text(edDate,style: kContentTextStyle,),
-                        SizedBox(height: screenHeight*0.02,)
-                      ],
-                    )
-                  ],),
-                  Row(children: [
-                    Text('ปริมาณที่คาดว่าจะส่งขาย:   ',style: kContentTextStyle,),
-                    Text('$predictingToSale   $unit',style: kContentTextStyle,),
-                    SizedBox(height: screenHeight*0.04,)
-                  ],),
-                  Row(children: [
-                    Text('เป็นราคา:   ',style: kContentTextStyle,),
-                    Text('$totalPrice   บาท',style: kContentTextStyle),
-                    SizedBox(height: screenHeight*0.05,)
-                  ],),
-                  Row(children: [
-                    Text('สถานะ:  ',style: kContentTextStyle,),
-                    Text(
-                      '$strStatus',
-                      style: TextStyle(
-                          fontFamily: 'SansThai',
-                          fontSize: 16.0,
-                          color: colorStatusText(status),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],),
+                  Text(
+                    'เกษตรกร: \n$farmName',
+                    style: kContentTextStyle,
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.02,
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'วันที่เริ่มปลูก: ',
+                            style: kContentTextStyle,
+                          ),
+                          Text(
+                            stDate,
+                            style: kContentTextStyle,
+                          ),
+                          SizedBox(
+                            height: screenHeight * 0.02,
+                          )
+                        ],
+                      ),
+                      Expanded(child: Text(' ')),
+                      Column(
+                        children: [
+                          Text(
+                            'วันที่เก็บเกี่ยว: ',
+                            style: kContentTextStyle,
+                          ),
+                          Text(
+                            edDate,
+                            style: kContentTextStyle,
+                          ),
+                          SizedBox(
+                            height: screenHeight * 0.02,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'ปริมาณที่คาดว่าจะส่งขาย:   ',
+                        style: kContentTextStyle,
+                      ),
+                      Text(
+                        '$predictingToSale   $unit',
+                        style: kContentTextStyle,
+                      ),
+                      SizedBox(
+                        height: screenHeight * 0.04,
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'เป็นราคา:   ',
+                        style: kContentTextStyle,
+                      ),
+                      Text('$totalPrice   บาท', style: kContentTextStyle),
+                      SizedBox(
+                        height: screenHeight * 0.05,
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'สถานะ:  ',
+                        style: kContentTextStyle,
+                      ),
+                      Text(
+                        '$strStatus',
+                        style: TextStyle(
+                            fontFamily: 'SansThai',
+                            fontSize: 16.0,
+                            color: colorStatusText(status),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(child: Text(' ')),
+                      //This expanded for keep the button center
+                      Container(
+                        padding: EdgeInsets.all(40),
+                        //color: Colors.yellow,
+                        child: PintoButton(label: buttonLabel, function: buttonFunc, buttonColor: deepBlue)),
+                      Expanded(child: Text(' ')),
+                    ],
+                  )
                 ],
-              ),)
-
+              ),
+            ),
           ],
         ),
       ),
