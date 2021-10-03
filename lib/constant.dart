@@ -29,7 +29,7 @@ const kSubHeadingBoldTextStyle = TextStyle(
   fontWeight: FontWeight.bold
 );
 
-const kTextdetailGreyColor = TextStyle(
+const kTextDetailGreyColor = TextStyle(
     fontFamily: 'SansThai',
     fontSize: 14.0,
     color: mediumBlack
