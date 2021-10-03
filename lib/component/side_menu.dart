@@ -73,6 +73,14 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
+              leading: Icon(Icons.shopping_cart),
+              title: Text('StatusWithFarmer',style: kContentTextStyle),
+              onTap: (){
+
+                print('StatusWithFarmer');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('ออกจากระบบ',style: kContentTextStyle),
               onTap: ()async {
