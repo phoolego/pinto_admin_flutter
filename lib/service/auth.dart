@@ -17,9 +17,19 @@ class Auth {
       await _storage.write(key: 'password', value: password);
       return User(response.data);
     } on DioError catch (err) {
-      // print(err.response!.statusCode);
-      // print(err.response!.data['message']);
-      throw err.response!.data['message'];
+      if(err.response==null){
+        throw 'การเชื่อมต่อขัดข้อง';
+      }else if(err.response!.statusCode==403){
+        throw 'กรุณากรอก อีเมล และ รหัสผ่าน';
+      }else if(err.response!.data['message']=='wrong password'){
+        throw 'รหัสผ่านไม่ถูกต้อง';
+      }else if(err.response!.data['message']=='Do not have permission'){
+        throw 'คุณไม่มีสิทธิ์ในการเข้าใช้งาน';
+      }else if(err.response!.data['message']=='no user found'){
+        throw 'ไม่พบบัญชีผู้ใช้';
+      }else{
+        throw 'ระบบขัดข้อง';
+      }
     }
   }
   static Future<void> logout() async{
