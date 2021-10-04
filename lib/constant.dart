@@ -17,6 +17,12 @@ const kContentTextWhite = TextStyle(
     color: deepWhite,
 );
 
+const kContentTextMedBlue = TextStyle(
+  fontFamily: 'SansThai',
+  fontSize: 16.0,
+  color: mediumBlue,
+);
+
 const kContentTextMedBlack = TextStyle(
   fontFamily: 'SansThai',
   fontSize: 16.0,

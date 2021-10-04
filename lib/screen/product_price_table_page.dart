@@ -77,7 +77,7 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
             Container(
                 //padding: EdgeInsets.all(10),
                 height: 0.65 * screenHeight,
-                color: Colors.grey,
+                color: mediumGrayBackground,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -87,25 +87,40 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
-                            'ลำดับ',
-                            style: kContentTextWhite,
+                          SizedBox(
+                            width: 0.15 * screenWidth,
+                            child: Text(
+                              'ลำดับ',
+                              style: kContentTextWhite,textAlign: TextAlign.center,
+                            ),
                           ),
-                          Text(
-                            'ชื่อสินค้า',
-                            style: kContentTextWhite,
+                          SizedBox(
+                            width: 0.35 * screenWidth,
+                            child: Text(
+                              'ชื่อสินค้า',
+                              style: kContentTextWhite,textAlign: TextAlign.left,
+                            ),
                           ),
-                          Text(
-                            'ซื้อ',
-                            style: kContentTextWhite,
+                          SizedBox(
+                            width: 0.15 * screenWidth,
+                            child: Text(
+                              'ซื้อ',
+                              style: kContentTextWhite,textAlign: TextAlign.right,
+                            ),
                           ),
-                          Text(
-                            'ขาย',
-                            style: kContentTextWhite,
+                          SizedBox(
+                            width: 0.15 * screenWidth,
+                            child: Text(
+                              'ขาย',
+                              style: kContentTextWhite,textAlign: TextAlign.right,
+                            ),
                           ),
-                          Text(
-                            'หน่วย',
-                            style: kContentTextWhite,
+                          SizedBox(
+                            width: 0.2 * screenWidth,
+                            child: Text(
+                              'หน่วย',
+                              style: kContentTextWhite,textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),
@@ -162,31 +177,54 @@ class productPriceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      color: lightBlue,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      color: mediumGrayBackground,
+      child: Column(
         children: [
-          Text(
-            index.toString(),
-            style: kContentTextWhite,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: 0.15 * screenWidth,
+                child: Text(
+                  '$index',
+                  style: kContentTextMedBlue,textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                width: 0.35 * screenWidth,
+                child: Text(
+                  '$productName',
+                  style: kContentTextMedBlue,
+                ),
+              ),
+              SizedBox(
+                width: 0.15 * screenWidth,
+                child: Text(
+                  '$buyPrice',
+                  style: kContentTextMedBlue,textAlign: TextAlign.right,
+                ),
+              ),
+              SizedBox(
+                width: 0.15 * screenWidth,
+                child: Text(
+                  '$sellPrice',
+                  style: kContentTextMedBlue,textAlign: TextAlign.right,
+                ),
+              ),
+              SizedBox(
+                width: 0.2 * screenWidth,
+                child: Text(
+                  '$unit',
+                  style: kContentTextMedBlue,textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
-          Text(
-            '$productName',
-            style: kContentTextWhite,
-          ),
-          Text(
-            '$buyPrice',
-            style: kContentTextWhite,
-          ),
-          Text(
-            '$sellPrice',
-            style: kContentTextWhite,
-          ),
-          Text(
-            '$sellPrice',
-            style: kContentTextWhite,
-          ),
+          SizedBox(height: screenHeight *0.01,)
         ],
       ),
     );
