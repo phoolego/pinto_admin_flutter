@@ -40,7 +40,7 @@ class FarmInfoCard extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(screenWidth*0.1, 0, screenWidth*0.1, 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: deepBlue,
+                color: mediumBlue,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
