@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/side_menu.dart';
+import 'package:pinto_admin_flutter/service/auth.dart';
 
 class MyProfilePage extends StatelessWidget {
   String? firstName = SideMenu.withoutAny().firstName;
@@ -17,7 +18,7 @@ class MyProfilePage extends StatelessWidget {
         backgroundColor: deepBlue,
         title: Text(
           'โปรไฟล์ของฉัน',
-          style: whiteSmallNormalTextStyle,
+          style: kContentTextWhite,
         ),
       ),
       body: SafeArea(
@@ -40,14 +41,14 @@ class MyProfilePage extends StatelessWidget {
                     Container(
                       width: 0.4 * screenWidth,
                       child: Text(
-                        '$firstName \n$lastName \n$role',
+                        '${Auth.user.firstname} \n${Auth.user.lastname} \n${Auth.user.role}',
                         textAlign: TextAlign.left,
                         style: kHeadingTextStyle,
                       ),
                     ),
                     IconButton(
                       onPressed: () {
-                        print('$firstName เข้าสู่หน้าแก้ไขโปรไฟล์ของฉัน');
+                        print('${Auth.user.firstname} เข้าสู่หน้าแก้ไขโปรไฟล์ของฉัน');
                         Navigator.defaultRouteName;
                         //TODO:My edit profile page
                       },
