@@ -86,7 +86,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.fromLTRB(screenWidth*0.05, 5, screenWidth*0.03, 0),
+                            padding: EdgeInsets.fromLTRB(screenWidth*0.1, 5, screenWidth*0.03, 0),
                             height: screenHeight*0.08,
                             width: screenWidth,
                             decoration: BoxDecoration(
@@ -128,16 +128,18 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
+                                    alignment: Alignment.center,
                                     //margin: EdgeInsets.only(top: 0.01 * screenHeight),
                                     padding: EdgeInsets.only(
                                         top: 0.01 * screenHeight,
                                         bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
-                                        right: 0.02 * screenWidth),
+                                        left: 0.15 * screenWidth,
+                                        right: 0.15 * screenWidth),
                                     decoration: BoxDecoration(
                                       color: lightGrayBackground,
                                     ),
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
@@ -178,11 +180,11 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                     padding: EdgeInsets.only(
                                         top: 0.01 * screenHeight,
                                         bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
-                                        right: 0.02 * screenWidth),
+                                        left: 0.15 * screenWidth,
+                                        right: 0.15 * screenWidth),
                                     decoration: BoxDecoration(color: deepWhite),
                                     child: Row(
-
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
@@ -223,7 +225,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                     padding: EdgeInsets.only(
                                         top: 0.01 * screenHeight,
                                         bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
+                                        left: 0.15 * screenWidth,
                                         right: 0.02 * screenWidth),
                                     decoration: BoxDecoration(
                                       color: lightGrayBackground,
@@ -232,6 +234,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       ),
                                     ),
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
