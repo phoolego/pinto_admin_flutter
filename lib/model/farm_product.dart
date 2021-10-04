@@ -13,6 +13,8 @@ class FarmProduct{
   String areaUnit = 'ตร.ม.';
   String priceUnit = 'บาท';
   double currentStock = 0;
+  String firstname = '';
+  String lastname = '';
 
   FarmProduct(Map<String,dynamic> jsonProduct){
     // productId = jsonProduct['product_id'];
@@ -27,6 +29,8 @@ class FarmProduct{
     buyPrice = jsonProduct['price_buy']+0.0;
     unit = jsonProduct['unit'];
     currentStock = jsonProduct['current_stock']==null?0:jsonProduct['current_stock']+0.0;
+    firstname = jsonProduct['firstname'];
+    lastname = jsonProduct['lastname'];
   }
 
   double getUsedAmount(){

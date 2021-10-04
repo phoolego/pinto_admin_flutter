@@ -11,15 +11,22 @@ import 'package:pinto_admin_flutter/service/product_service.dart';
 class FarmProductPage extends StatefulWidget {
   String productType;
   StockFarm stockFarm;
-  FarmProductPage({required this.stockFarm,required this.productType});
+  Map operation;
+  FarmProductPage({required this.stockFarm,required this.productType, required this.operation,});
 
   @override
   State<FarmProductPage> createState() => _FarmProductPageState();
 }
 
 class _FarmProductPageState extends State<FarmProductPage> {
+  void reload(){
+    setState(() {
+      print('reload farmProduct');
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    widget.operation['farmProduct'] = reload;
     //size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -176,7 +183,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                                 children: [
-                                                  Text('ปริมาณที่เก็บเกี่ยว',
+                                                  Text(farmProduct.status=='PLANTING'?'ปริมาณที่คาดว่าเก็บเกี่ยว':'ปริมาณที่เก็บเกี่ยว',
                                                       style: kNormalTextStyle),
                                                   Text('${farmProduct.getUsedAmount()} ${farmProduct.unit}',
                                                       style: kNormalTextStyle)
@@ -192,7 +199,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
-                                                  Text('วันที่เก็บเกี่ยว',
+                                                  Text(farmProduct.status=='PLANTING'?'วันที่คาดว่าเก็บเกี่ยว':'วันที่เก็บเกี่ยว',
                                                       style: kNormalTextStyle),
                                                   Text(DateFormat.getFullDate(farmProduct.getUsedPlanting()!),
                                                       style: kNormalTextStyle),
@@ -259,7 +266,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                       farmName: widget.productType,
                                                       productId: widget.stockFarm.productId,
                                                       productAmount: widget.stockFarm.amount,
-                                                      unit: farmProduct.unit
+                                                      farmProduct: farmProduct,
+                                                      operation: widget.operation,
                                                     )
                                                   )
                                                 );

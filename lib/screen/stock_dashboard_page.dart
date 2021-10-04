@@ -14,11 +14,16 @@ class StockDashboardPage extends StatefulWidget {
 }
 
 class _StockDashboardPageState extends State<StockDashboardPage> {
-
-
-
+  void reload(){
+    setState(() {
+      print('reload root');
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    Map operation = {
+      'root':reload
+    };
     return Scaffold(
       appBar: AppBar(
           backgroundColor: deepBlue,
@@ -121,6 +126,7 @@ class _StockDashboardPageState extends State<StockDashboardPage> {
                                       builder: (context) => FarmProductPage(
                                         stockFarm: stock.farmers[index],
                                         productType: widget.productName,
+                                        operation: operation,
                                       )
                                   )
                               );

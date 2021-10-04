@@ -1,86 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
+import 'package:pinto_admin_flutter/model/farm_product.dart';
+import 'package:pinto_admin_flutter/model/stock_product.dart';
+import 'package:pinto_admin_flutter/service/date_format.dart';
+import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 class SellingProductStatusPage extends StatefulWidget {
+  FarmProduct farmProduct;
+  StockProduct stockProduct;
+  Map operation;
+  SellingProductStatusPage({
+    required this.farmProduct,
+    required this.stockProduct,
+    required this.operation,
+  });
   @override
   _SellingProductStatusPage createState() => _SellingProductStatusPage();
 }
 
 class _SellingProductStatusPage extends State<SellingProductStatusPage> {
-  String productName = 'ผักกาดขาว';
-  int status = 3;
-  String farmName = 'สมหญิง';
-  String stDate = '8/8/2020';
-  String edDate = '20/12/2020';
-  double predictingToSale = 10;
-  double totalPrice = 0;
-  String unit = 'กรัม';
-  double pricePerUnit = 3;
-  String transportDate = '1/7/2020';
-  String strStatus = '';
-  String buttonLabel ='test';
-  Function buttonFunc = (){};
 
-
-  void checkStatus(int status) {
-    if (status == 1) {
-      strStatus = 'ยังไม่ได้รับผลิตภัณฑ์';
-      buttonLabel = 'ได้รับผลิตภัณฑ์แล้ว';
-      print('ได้รับผลิตภัณฑ์แล้ว');
-    } else if (status == 2) {
-      strStatus = 'ส่งผลผลิตแล้ว';
-      buttonLabel = '+ เพิ่มรูปภาพหลักฐานการชำระเงิน';
-      print('+ เพิ่มรูปภาพหลักฐานการชำระเงิน');
-    } else if (status == 3) {
-      strStatus = 'ชำระเงินแล้ว';
-    } else {
-      print('INVALID');
+  bool isButtonShow(){
+    if(widget.stockProduct.sspStatus=='PREPARE' || widget.stockProduct.sspStatus=='DELIVERED'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  String buttonLabel(){
+    if(widget.stockProduct.sspStatus=='PREPARE'){
+      return 'ได้รับผลิตภัณฑ์แล้ว';
+    }else if(widget.stockProduct.sspStatus=='DELIVERED'){
+      return 'เพิ่มหลักฐานการชำระเงิน';
+    }else{
+      return '';
+    }
+  }
+  buttonFunc(BuildContext context){
+    if(widget.stockProduct.sspStatus=='PREPARE'){
+      return ()async{
+        setState((){
+          _errorMessage = '';
+        });
+        try{
+          await StockService.receiveStockProduct(widget.stockProduct.sspId);
+          widget.operation['root']();
+          widget.operation['sspList']();
+          widget.operation['farmProduct']();
+          Navigator.pop(context);
+        }catch(err){
+          setState((){
+            _errorMessage = err.toString();
+          });
+        }
+      };
+    }else if(widget.stockProduct.sspStatus=='DELIVERED'){
+      return ()async{
+        setState((){
+          _errorMessage = '';
+        });
+        try{
+          await StockService.payStockProduct(widget.stockProduct.sspId);
+          widget.operation['root']();
+          widget.operation['sspList']();
+          widget.operation['farmProduct']();
+          Navigator.pop(context);
+        }catch(err){
+          setState((){
+            _errorMessage = err.toString();
+          });
+        }
+      };
+    }else{
+      return (){};
     }
   }
 
-  void checkButtonStatus(int status){
-    if (status == 1) {
-      buttonLabel = 'ได้รับผลิตภัณฑ์แล้ว';
-      print('ได้รับผลิตภัณฑ์แล้ว');
-    } else if (status == 2) {
-      buttonLabel = '+ เพิ่มรูปภาพหลักฐานการชำระเงิน';
-      print('+ เพิ่มรูปภาพหลักฐานการชำระเงิน');
-    } else if (status == 3) {
-      strStatus = 'ชำระเงินแล้ว';
-    } else {
-      print('INVALID');
-    }
-  }
-
-  Color colorStatusText(int status) {
-    if (status == 1) {
-      return notYetRed;
-    } else if (status == 2) {
-      return waitingYellow;
-    } else if (status == 3) {
-      return successGreen;
-    } else {
-      return Colors.white;
-    }
-  }
-
-  double calculateTotalPrice(double pricePerUnit) {
-    totalPrice = pricePerUnit * predictingToSale;
-    if (totalPrice == 0) {
-      print('Something wrong totalPrice = 0');
-    }
-    return totalPrice;
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    checkButtonStatus(status);
-    checkStatus(status);
-    calculateTotalPrice(pricePerUnit);
-    print(buttonLabel);
-  }
+  String _errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +87,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: Text(
-          'ชื่อผลิตภัณฑ์: $productName',
+          widget.farmProduct.typeOfProduct,
           style: kAppbarTextStyle,
           textAlign: TextAlign.left,
         ),
@@ -101,7 +98,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
           icon: Icon(Icons.arrow_back),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -119,19 +116,15 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'รายการส่งขายวันที่  $transportDate',
+                    'รายการส่งขายวันที่ ${DateFormat.getFullDate(widget.stockProduct.createDate)}',
                     style: kContentTextWhite,
                   ),
                   Row(
                     children: [
-                      Text('สถานะ   ', style: kContentTextWhite),
+                      Text('สถานะ ', style: kContentTextWhite),
                       Text(
-                        '$strStatus',
-                        style: TextStyle(
-                            fontFamily: 'SansThai',
-                            fontSize: 16.0,
-                            color: colorStatusText(status),
-                            fontWeight: FontWeight.bold),
+                        '${widget.stockProduct.getStatus()}',
+                        style: widget.stockProduct.getStatusTextStyle(),
                       ),
                     ],
                   )
@@ -143,108 +136,157 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
               height: screenHeight * 0.04,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(
-                  screenWidth * 0.1, 0, screenWidth * 0.2, 10),
+              padding: EdgeInsets.fromLTRB(screenWidth * 0.1, 0, screenWidth * 0.1, 10),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'เกษตรกร: \n$farmName',
-                    style: kContentTextStyle,
+                  SizedBox(
+                    width: screenWidth*0.8,
+                    child: Text(
+                      'เกษตรกร: \n${widget.farmProduct.firstname} ${widget.farmProduct.lastname}',
+                      style: kContentTextStyle,
+                    ),
                   ),
                   SizedBox(
                     height: screenHeight * 0.02,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            'วันที่เริ่มปลูก: ',
-                            style: kContentTextStyle,
-                          ),
-                          Text(
-                            stDate,
-                            style: kContentTextStyle,
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.02,
-                          )
-                        ],
-                      ),
-                      Expanded(child: Text(' ')),
-                      Column(
-                        children: [
-                          Text(
-                            'วันที่เก็บเกี่ยว: ',
-                            style: kContentTextStyle,
-                          ),
-                          Text(
-                            edDate,
-                            style: kContentTextStyle,
-                          ),
-                          SizedBox(
-                            height: screenHeight * 0.02,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'ปริมาณที่คาดว่าจะส่งขาย:   ',
-                        style: kContentTextStyle,
-                      ),
-                      Text(
-                        '$predictingToSale   $unit',
-                        style: kContentTextStyle,
+                      SizedBox(
+                        width: screenWidth*0.4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'วันที่เริ่มปลูก: ',
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              DateFormat.getFullDate(widget.farmProduct.plantDate),
+                              style: kContentTextStyle,
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.02,
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        height: screenHeight * 0.04,
+                        width: screenWidth*0.4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'วันที่เก็บเกี่ยว: ',
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              DateFormat.getFullDate(widget.farmProduct.predictHarvestDate),
+                              style: kContentTextStyle,
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.02,
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
+                  // Row(
+                  //   children: [
+                  //     Text(
+                  //       'ปริมาณที่คาดว่าจะส่งขาย:   ',
+                  //       style: kContentTextStyle,
+                  //     ),
+                  //     Text(
+                  //       '$predictingToSale   $unit',
+                  //       style: kContentTextStyle,
+                  //     ),
+                  //     SizedBox(
+                  //       height: screenHeight * 0.04,
+                  //     )
+                  //   ],
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Text(
+                  //       'เป็นราคา:   ',
+                  //       style: kContentTextStyle,
+                  //     ),
+                  //     Text('$totalPrice   บาท', style: kContentTextStyle),
+                  //   ],
+                  // ),
                   Row(
                     children: [
-                      Text(
-                        'เป็นราคา:   ',
-                        style: kContentTextStyle,
-                      ),
-                      Text('$totalPrice   บาท', style: kContentTextStyle),
                       SizedBox(
-                        height: screenHeight * 0.05,
-                      )
+                        width: screenWidth * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              widget.farmProduct.status=='PLANTING'?'ปริมาณที่คาดว่าจะส่งขาย':'ปริมาณที่จะส่งขาย',
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              'เป็นราคา',
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              'วันที่ส่งผลิตภัณฑ์',
+                              style: kContentTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenWidth * 0.3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              widget.stockProduct.sspAmount.toString(),
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              widget.stockProduct.sspPrice.toString(),
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                                widget.stockProduct.deliveredDate==null?'-':DateFormat.getFullDate(widget.stockProduct.deliveredDate!),
+                              style: kContentTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: screenWidth * 0.1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              widget.stockProduct.unit,
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              'บาท',
+                              style: kContentTextStyle,
+                            ),
+                            Text(
+                              '',
+                              style: kContentTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'สถานะ:  ',
-                        style: kContentTextStyle,
-                      ),
-                      Text(
-                        '$strStatus',
-                        style: TextStyle(
-                            fontFamily: 'SansThai',
-                            fontSize: 16.0,
-                            color: colorStatusText(status),
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(child: Text(' ')),
-                      //This expanded for keep the button center
-                      Container(
-                        padding: EdgeInsets.all(40),
-                        //color: Colors.yellow,
-                        child: PintoButton(label: buttonLabel, function: buttonFunc, buttonColor: deepBlue)),
-                      Expanded(child: Text(' ')),
-                    ],
-                  )
+                  SizedBox(height: screenHeight * 0.05),
+                  isButtonShow()? PintoButton(label: buttonLabel(), function: buttonFunc(context), buttonColor: deepBlue):SizedBox(),
+                  Text(_errorMessage,style: kNormalErrorTextStyle,),
                 ],
               ),
             ),

@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
         // '/stock/stockDashboard/farmDetail/' : (context) => FarmProductPage(),
         // '/stock/stockDashboard/farmDetail/SellingList' : (context) => sellingProductListPage(),
-        '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => SellingProductStatusPage(),
+        // '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => SellingProductStatusPage(),
         '/stock/productPriceTable' : (context) => ProductPriceTable(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),

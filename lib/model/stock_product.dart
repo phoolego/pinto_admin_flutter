@@ -11,6 +11,7 @@ class StockProduct {
   String name = '';
   DateTime plantDate = DateTime.now();
   DateTime createDate = DateTime.now();
+  DateTime? deliveredDate = DateTime.now();
 
   StockProduct(Map<String,dynamic> jsonSsp){
     sspId = jsonSsp['ssp_id'];
@@ -22,6 +23,7 @@ class StockProduct {
     name = jsonSsp['name'];
     plantDate = DateTime.parse(jsonSsp['plant_date']);
     createDate = DateTime.parse(jsonSsp['ssp_create_date']);
+    deliveredDate = jsonSsp['ssp_delivered_date']==null?null:DateTime.parse(jsonSsp['ssp_delivered_date']);
   }
   String getStatus(){
     if(sspStatus=='PREPARE'){
