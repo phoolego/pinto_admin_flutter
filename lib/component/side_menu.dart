@@ -73,11 +73,19 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
-              leading: Icon(Icons.shopping_cart),
+              leading: Icon(Icons.build),
               title: Text('StatusWithFarmer',style: kContentTextStyle),
               onTap: (){
                 Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer');
                 print('StatusWithFarmer(DEMO)');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.build),
+              title: Text('FarmProductPage',style: kContentTextStyle),
+              onTap: (){
+                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/');
+                print('FarmProductPage');
               },
             ),
             ListTile(
