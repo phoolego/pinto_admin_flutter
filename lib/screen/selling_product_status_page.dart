@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 
-class StatusWithFarmer extends StatefulWidget {
+class SellingProductStatusPage extends StatefulWidget {
   @override
-  _StatusWithFarmerState createState() => _StatusWithFarmerState();
+  _SellingProductStatusPage createState() => _SellingProductStatusPage();
 }
 
-class _StatusWithFarmerState extends State<StatusWithFarmer> {
+class _SellingProductStatusPage extends State<SellingProductStatusPage> {
   String productName = 'ผักกาดขาว';
   int status = 3;
   String farmName = 'สมหญิง';

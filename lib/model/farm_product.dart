@@ -1,5 +1,5 @@
 class FarmProduct{
-  int productId=0;
+  // int productId=0;
   double area=0;
   DateTime plantDate = DateTime.now();
   DateTime predictHarvestDate = DateTime.now();
@@ -15,7 +15,7 @@ class FarmProduct{
   double currentStock = 0;
 
   FarmProduct(Map<String,dynamic> jsonProduct){
-    productId = jsonProduct['product_id'];
+    // productId = jsonProduct['product_id'];
     area = jsonProduct['area']+0.0;
     plantDate = DateTime.parse(jsonProduct['plant_date']);
     predictHarvestDate = DateTime.parse(jsonProduct['predict_harvest_date']);
@@ -26,7 +26,7 @@ class FarmProduct{
     status = jsonProduct['status'];
     buyPrice = jsonProduct['price_buy']+0.0;
     unit = jsonProduct['unit'];
-    currentStock = jsonProduct['current_stock'];
+    currentStock = jsonProduct['current_stock']==null?0:jsonProduct['current_stock']+0.0;
   }
 
   double getUsedAmount(){

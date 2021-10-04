@@ -22,7 +22,7 @@ class ProductService{
       return err.response!.data['message'];
     }
   }
-  static Future<FarmProduct> getFarmProduct(int productId, farmerId) async{
+  static Future<FarmProduct> getFarmProduct(int productId,int farmerId) async{
     try {
       var response = await Api.dio.get('/stock-detail/product',
         options: Options(
@@ -30,10 +30,17 @@ class ProductService{
             'userId':Auth.user.userId
           },
         ),
+        queryParameters: {
+          'productId':productId,
+          'farmerId':farmerId
+        },
       );
       return FarmProduct(response.data);
     } on DioError catch (err) {
-      return err.response!.data['message'];
+      throw err.response!.data['message'];
+    } catch(err){
+      print(err.toString());
+      throw err.toString();
     }
   }
 

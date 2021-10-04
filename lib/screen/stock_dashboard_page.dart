@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/farmInfoCard.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
+import 'package:pinto_admin_flutter/screen/farm_product_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
-class StockDashboard extends StatefulWidget {
+class StockDashboardPage extends StatefulWidget {
   String productName = '';
-  StockDashboard({required this.productName});
+  StockDashboardPage({required this.productName});
 
   @override
-  _StockDashboardState createState() => _StockDashboardState();
+  _StockDashboardPageState createState() => _StockDashboardPageState();
 }
 
-class _StockDashboardState extends State<StockDashboard> {
+class _StockDashboardPageState extends State<StockDashboardPage> {
   // String productName = 'ผักกาดขาว (mockData)';
   // double totalInStock = 40;
   // double openToSales = 25;
@@ -120,7 +121,15 @@ class _StockDashboardState extends State<StockDashboard> {
                             unit: stock.unit,
                             inFarm: stock.farmers[index].amount,
                             function: (){
-
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FarmProductPage(
+                                        stockFarm: stock.farmers[index],
+                                        productType: widget.productName,
+                                      )
+                                  )
+                              );
                             }
                           ),
                         ),
