@@ -8,17 +8,19 @@ class FarmProductPage extends StatelessWidget {
     //String
     String nullData = 'ไม่มีข้อมูล';
     String productName = 'ผักกาดขาว';
-    double farmSize = 100;
+    //double farmSize = 100;
     String unitSize = 'ตร.ม.';
     String unitAmount = 'กรัม';
     String unitPrice = 'บาท';
     String startDate = '01/06/2021';
-    double expectAmount = 175;
-    String expectDate = '02/07/2021';
-    double harvestAmount = 180;
+    // double expectAmount = 175;
+    // String expectDate = '02/07/2021';
+    double harvestAmount = 25;
     String harvestDate = '11/07/2021';
-    double sellAmount = 150;
+    double sellAmount = 25;
+    double currentStock = 15;
     double pricePerOne = 20;
+    String farmName = 'สมหญิง';
 
     //size
     double screenHeight = MediaQuery.of(context).size.height;
@@ -27,7 +29,7 @@ class FarmProductPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: Text(
-          'ชื่อผลิตภัณฑ์: $productName',
+          '$productName',
           style: kAppbarTextStyle,
         ),
         leading: IconButton(
@@ -59,320 +61,240 @@ class FarmProductPage extends StatelessWidget {
               ),
               Positioned(
                 top: 0.3 * screenHeight,
-                child: Container(
-                  height: screenHeight * 0.7 -
-                      MediaQuery.of(context).padding.top -
-                      kToolbarHeight,
-                  width: screenWidth,
-                  padding: EdgeInsets.fromLTRB(
-                      0,
-                      0,
-                      0,
-                      0.01 * screenHeight),
-                  // alignment: Alignment.bottomCenter,
-                  decoration: BoxDecoration(
-                    color: deepWhite,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(screenWidth*0.05, 5, screenWidth*0.03, 0),
+                      height: screenHeight*0.08,
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        color: deepBlue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('ฟาร์ม $farmName',style: kContentTextWhite,),
+                          Text('จำนวนผลผลิตภัณฑ์  $currentStock $unitAmount ',style: kContentTextWhite,)
+                        ],
+                      ),
                     ),
-                  ),
-                  child: SingleChildScrollView(
-                    // margin: EdgeInsets.only(top: 0.1*screenHeight),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: screenHeight*0.07,
-                          width: screenWidth,
-                          decoration: BoxDecoration(
-                            color: deepBlue,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
+                    Container(
+                      height: screenHeight * 0.7 -
+                          MediaQuery.of(context).padding.top -
+                          kToolbarHeight,
+                      width: screenWidth,
+                      padding: EdgeInsets.fromLTRB(
+                          0,
+                          0,
+                          0,
+                          0.01 * screenHeight),
+                      // alignment: Alignment.bottomCenter,
+                      decoration: BoxDecoration(
+                        color: deepWhite,
+                        // borderRadius: BorderRadius.only(
+                        //   topLeft: Radius.circular(20),
+                        //   topRight: Radius.circular(20),
+                        // ),
+                      ),
+                      child: SingleChildScrollView(
+                        // margin: EdgeInsets.only(top: 0.1*screenHeight),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              //margin: EdgeInsets.only(top: 0.01 * screenHeight),
+                              padding: EdgeInsets.only(
+                                  top: 0.01 * screenHeight,
+                                  bottom: 0.01 * screenHeight,
+                                  left: 0.05 * screenWidth,
+                              right: 0.02 * screenWidth),
+                              decoration: BoxDecoration(
+                                color: lightGrayBackground,
+                              ),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: 0.43 * screenWidth,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('ราคาต่อหน่วย:',
+                                                style: kNormalTextStyle),
+                                            Text('$pricePerOne บาท',
+                                                style: kNormalTextStyle)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        //width: 0.43 * screenWidth,
+                                        child: Column(
+                                          children: [
+                                            Text('วันที่เริ่มปลูก:',
+                                                style: kNormalTextStyle),
+                                            Text('$startDate',
+                                                style: kNormalTextStyle),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: 0.01 * screenHeight,
+                                  bottom: 0.01 * screenHeight,
+                                  left: 0.05 * screenWidth,
+                                  right: 0.02 * screenWidth),
+                              decoration: BoxDecoration(color: deepWhite),
+                              child: Row(
 
-                          child: Column(
-                            children: [
-                              Text('data',style: kContentTextWhite,),
-                              Text('data',style: kContentTextWhite,)
-                            ],
-                          ),
-                        ),
-                        Container(
-                          //margin: EdgeInsets.only(top: 0.01 * screenHeight),
-                          padding: EdgeInsets.only(
-                              //top: 0.01 * screenHeight,
-                              bottom: 0.01 * screenHeight,
-                              left: 0.04 * screenWidth,
-                          right: 0.02 * screenWidth),
-                          decoration: BoxDecoration(
-                            color: lightGrayBackground,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: 0.43 * screenWidth,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text('ปริมาณที่เก็บเกี่ยว:',
+                                                style: kNormalTextStyle),
+                                            Text('$harvestAmount $unitAmount',
+                                                style: kNormalTextStyle)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        //width: 0.43 * screenWidth,
+                                        child: Column(
+                                          children: [
+                                            Text('วันที่เก็บเกี่ยว:',
+                                                style: kNormalTextStyle),
+                                            Text('$harvestDate',
+                                                style: kNormalTextStyle),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: 0.01 * screenHeight,
+                                  bottom: 0.01 * screenHeight,
+                                  left: 0.05 * screenWidth,
+                                  right: 0.02 * screenWidth),
+                              decoration: BoxDecoration(
+                                color: lightGrayBackground,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Row(
                                 children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: 0.43 * screenWidth,
+                                        child: Column(
+                                          crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: [
-                                        Text('พื้นที่การปลูก',
-                                            style: kNormalTextStyle),
-                                        Text('$farmSize $unitSize',
-                                            style: kNormalTextStyle)
-                                      ],
-                                    ),
+                                          children: [
+                                            Text('ปริมาณที่ส่งขายทั้งหมด:',
+                                                style: kNormalTextStyle),
+                                            Text('$sellAmount $unitAmount',
+                                                style: kNormalTextStyle)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        //width: 0.43 * screenWidth,
+                                        child: Column(
+                                          children: [
+                                            Text('',
+                                                style: kNormalTextStyle),
+                                            Text('',
+                                                style: kNormalTextStyle),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   )
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('วันที่เริ่มปลูก',
-                                            style: kNormalTextStyle),
-                                        Text('$startDate',
-                                            style: kNormalTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              top: 0.01 * screenHeight,
-                              bottom: 0.01 * screenHeight),
-                          decoration: BoxDecoration(color: deepWhite),
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('ปริมาณที่คาดว่าจะได้',
-                                            style: kNormalTextStyle),
-                                        Text('$expectAmount $unitAmount',
-                                            style: kNormalTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('วันที่คาดว่าจะได้',
-                                            style: kNormalTextStyle),
-                                        Text('$expectDate',
-                                            style: kNormalTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              top: 0.01 * screenHeight,
-                              bottom: 0.01 * screenHeight),
-                          decoration: BoxDecoration(
-                            color: lightGrayBackground,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: 0.08 * screenHeight,
+                                  bottom: 0.01 * screenHeight),
+                              decoration: BoxDecoration(color: deepWhite),
+                            ),
+                            Container(
+                              padding:
+                                  EdgeInsets.only(top: 0.03 * screenHeight),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('ปริมาณที่เก็บเกี่ยว',
-                                            style: kNormalTextStyle),
-                                        Text('$nullData $unitAmount',
-                                            style: kNormalAlertTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('วันที่เก็บเกี่ยว',
-                                            style: kNormalTextStyle),
-                                        Text('$nullData',
-                                            style: kNormalAlertTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              top: 0.01 * screenHeight,
-                              bottom: 0.01 * screenHeight),
-                          decoration: BoxDecoration(color: deepWhite),
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('ปริมาณที่ส่งขาย',
-                                            style: kNormalTextStyle),
-                                        Text('$nullData $unitAmount',
-                                            style: kNormalAlertTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Container(
-                                    width: 0.43 * screenWidth,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('ราคาต่อหน่วย',
-                                            style: kNormalTextStyle),
-                                        Text('$pricePerOne $unitPrice',
-                                            style: kNormalTextStyle)
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 0.005 * screenHeight),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  ElevatedButton(
-                                    child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            0.01 * screenWidth,
-                                            0.005 * screenHeight,
-                                            0.01 * screenWidth,
-                                            0.005 * screenHeight),
-                                        child: Text('แก้ไขข้อมูล',
-                                            style:
-                                                whiteSmallNormalTextStyle)),
-                                    style: ElevatedButton.styleFrom(
-                                        primary: deepOrange),
-                                    onPressed: () {
-                                      print('Pressed');
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) => ProductEditDetailsPage(),
-                                      //   ),
-                                      // );
-                                    },
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 0.005 * screenHeight),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  ElevatedButton(
-                                    child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            0.01 * screenWidth,
-                                            0.005 * screenHeight,
-                                            0.01 * screenWidth,
-                                            0.005 * screenHeight),
-                                        child: Text('รายการส่งขาย',
-                                            style:
-                                                blackSmallNormalTextStyle)),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: lightOrange,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, '/product/sale');
-                                      print('Pressed');
-                                    },
+                                  Column(
+                                    children: [
+                                      ElevatedButton(
+                                        child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0.01 * screenWidth,
+                                                0.005 * screenHeight,
+                                                0.01 * screenWidth,
+                                                0.005 * screenHeight),
+                                            child: Text('ดูรายการส่งผลิตภัณฑ์',
+                                                style:
+                                                    whiteSmallNormalTextStyle)),
+                                        style: ElevatedButton.styleFrom(
+                                            primary: deepBlue),
+                                        onPressed: () {
+                                          print('Pressed');
+                                          // Navigator.push(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //     builder: (context) => ProductEditDetailsPage(),
+                                          //   ),
+                                          // );
+                                        },
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Container(
+                              height: 0.05 * screenHeight,
+                            ),
+                          ],
                         ),
-                        Container(
-                          height: 0.05 * screenHeight,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
