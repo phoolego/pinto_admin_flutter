@@ -31,14 +31,10 @@ class PintoButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon),
               Text(
                 label,
                 style: whiteSmallNormalTextStyle,
               ),
-              SizedBox(
-                width: 20,
-              )
             ],
           ),
         ),

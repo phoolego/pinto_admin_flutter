@@ -53,11 +53,10 @@ class _HomepageState extends State<Homepage> {
                       Expanded(
                         child: TextFormField(
                           textAlign: TextAlign.left,
-                          style:
-                              TextStyle(fontSize: 18.0, fontFamily: 'Prompht'),
+                          style: kHeadingTextStyle,
                           decoration: const InputDecoration(
                             hintText: 'ค้นหา',
-                            hintStyle: TextStyle(fontFamily: 'Prompht'),
+                            hintStyle: kNormalTextStyle,
                             contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
