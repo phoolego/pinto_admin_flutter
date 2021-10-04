@@ -65,8 +65,6 @@ class _StockListPage extends State<StockListPage> {
                     height: 10,
                   ),
                   Expanded(
-                    // width: screenWidth * 0.8,
-                    // height: screenHeight * 0.70,
                     child: FutureBuilder<List<StockPreview>>(
                       future: StockService.getStockPreviews(),
                       builder: (BuildContext context, AsyncSnapshot<List<StockPreview>> snapshot) {

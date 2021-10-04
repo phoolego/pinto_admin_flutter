@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pinto_admin_flutter/constant.dart';
+import 'package:pinto_admin_flutter/model/product_type.dart';
+import 'package:pinto_admin_flutter/service/product_service.dart';
 
 class ProductPriceTable extends StatefulWidget {
   @override
@@ -109,301 +111,30 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                       ),
                     ),
                     Expanded(
-                      child: ListView(
-                        children: [
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                          productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'), productPriceRow(
-                              index: 1,
-                              productName: 'productName',
-                              buyPrice: 00,
-                              sellPrice: 00,
-                              unit: 'unit'),
-                        ],
+                      child: FutureBuilder<List<ProductType>>(
+                        future: ProductService.getAllProductType(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<ProductType>> snapshot) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            List<ProductType> productTypeList = snapshot.data!;
+                            return ListView.builder(
+                                itemCount: productTypeList.length,
+                                itemBuilder: (context, index) =>
+                                    productPriceRow(
+                                        index: index + 1,
+                                        productName:
+                                            productTypeList[index].name,
+                                        buyPrice:
+                                            productTypeList[index].priceBuy,
+                                        sellPrice:
+                                            productTypeList[index].priceSell,
+                                        unit: productTypeList[index].unit));
+                          }
+                        },
                       ),
                     ),
                   ],

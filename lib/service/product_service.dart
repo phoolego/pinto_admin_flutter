@@ -20,6 +20,9 @@ class ProductService{
       return productType;
     } on DioError catch (err) {
       return err.response!.data['message'];
+    } catch (err){
+      print(err.toString());
+      throw err;
     }
   }
   static Future<FarmProduct> getFarmProduct(int productId,int farmerId) async{
