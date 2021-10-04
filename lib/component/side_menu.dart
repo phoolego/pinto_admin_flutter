@@ -73,6 +73,14 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text('โปรไฟล์ของฉัน',style: kContentTextStyle),
+              onTap: (){
+                print('$firstName เข้าสู่หน้าโปรไฟล์ของฉัน',);
+                Navigator.pushNamed(context, '/profile',);
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.build),
               title: Text('StatusWithFarmer',style: kContentTextStyle),
               onTap: (){
