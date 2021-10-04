@@ -96,23 +96,23 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(0.05 * screenWidth, 0, 0.05 * screenWidth, 0),
+                padding: EdgeInsets.fromLTRB(
+                    0.05 * screenWidth, 0, 0.05 * screenWidth, 0),
                 child: FutureBuilder<List<StockProduct>>(
                   future: StockService.getStockProduct(widget.productId),
-                  builder: (BuildContext context, AsyncSnapshot<List<StockProduct>> snapshot) {
-                    if(!snapshot.hasData){
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<StockProduct>> snapshot) {
+                    if (!snapshot.hasData) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    }else if(snapshot.hasError){
-                      return Center(
-                          child: Text(snapshot.error.toString())
-                      );
-                    }else{
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text(snapshot.error.toString()));
+                    } else {
                       List<StockProduct> stockProducts = snapshot.data!;
                       return ListView.builder(
                         itemCount: stockProducts.length,
-                        itemBuilder: (context, index)=> StatusCard(
+                        itemBuilder: (context, index) => StatusCard(
                             stockProduct: stockProducts[index],
                             function: (){
                               Navigator.push(

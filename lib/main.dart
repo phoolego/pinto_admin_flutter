@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const AuthController(),
         '/login': (context) => const Login(),
-        '/stock': (context) => const StockListPage(),
+        '/stock': (context) =>  StockListPage(),
         '/profile': (context) => MyProfilePage(),
         //'/stock/stockDashboard': (context) => StockDashboard(),
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
