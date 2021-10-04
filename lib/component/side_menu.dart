@@ -90,14 +90,6 @@ SideMenu({this.firstName, this.lastName, this.role});
             ),
             ListTile(
               leading: Icon(Icons.build),
-              title: Text('FarmProductPage',style: kContentTextStyle),
-              onTap: (){
-                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/');
-                print('FarmProductPage');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.build),
               title: Text('sellingProductPage',style: kContentTextStyle),
               onTap: (){
                 Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList');

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/model/farm_product.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
+import 'package:pinto_admin_flutter/screen/selling_product_list_page.dart';
 import 'package:pinto_admin_flutter/service/date_format.dart';
 import 'package:pinto_admin_flutter/service/product_service.dart';
 
@@ -86,7 +88,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.fromLTRB(screenWidth*0.05, 5, screenWidth*0.03, 0),
+                            padding: EdgeInsets.fromLTRB(screenWidth*0.1, 5, screenWidth*0.03, 0),
                             height: screenHeight*0.08,
                             width: screenWidth,
                             decoration: BoxDecoration(
@@ -128,16 +130,18 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
+                                    alignment: Alignment.center,
                                     //margin: EdgeInsets.only(top: 0.01 * screenHeight),
                                     padding: EdgeInsets.only(
                                         top: 0.01 * screenHeight,
                                         bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
-                                        right: 0.02 * screenWidth),
+                                        left: 0.15 * screenWidth,
+                                        right: 0.15 * screenWidth),
                                     decoration: BoxDecoration(
                                       color: lightGrayBackground,
                                     ),
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
@@ -178,11 +182,11 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                     padding: EdgeInsets.only(
                                         top: 0.01 * screenHeight,
                                         bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
-                                        right: 0.02 * screenWidth),
+                                        left: 0.15 * screenWidth,
+                                        right: 0.15 * screenWidth),
                                     decoration: BoxDecoration(color: deepWhite),
                                     child: Row(
-
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
@@ -221,10 +225,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                   ),
                                   Container(
                                     padding: EdgeInsets.only(
-                                        top: 0.01 * screenHeight,
-                                        bottom: 0.01 * screenHeight,
-                                        left: 0.05 * screenWidth,
-                                        right: 0.02 * screenWidth),
+                                      top: 0.01 * screenHeight,
+                                      bottom: 0.01 * screenHeight,
+                                      left: 0.15 * screenWidth,
+                                      right: 0.02 * screenWidth),
                                     decoration: BoxDecoration(
                                       color: lightGrayBackground,
                                       borderRadius: BorderRadius.all(
@@ -232,6 +236,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       ),
                                     ),
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           children: [
@@ -243,7 +248,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 children: [
                                                   Text('ปริมาณที่ส่งขายทั้งหมด',
                                                       style: kNormalTextStyle),
-                                                  Text('${farmProduct.currentStock} ${farmProduct.unit}',
+                                                  Text('${widget.stockFarm.amount} ${farmProduct.unit}',
                                                       style: kNormalTextStyle)
                                                 ],
                                               ),
@@ -282,28 +287,22 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       children: [
                                         Column(
                                           children: [
-                                            ElevatedButton(
-                                              child: Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      0.01 * screenWidth,
-                                                      0.005 * screenHeight,
-                                                      0.01 * screenWidth,
-                                                      0.005 * screenHeight),
-                                                  child: Text('ดูรายการส่งผลิตภัณฑ์',
-                                                      style:
-                                                      whiteSmallNormalTextStyle)),
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: deepBlue),
-                                              onPressed: () {
-                                                print('Pressed');
-                                                // Navigator.push(
-                                                //   context,
-                                                //   MaterialPageRoute(
-                                                //     builder: (context) => ProductEditDetailsPage(),
-                                                //   ),
-                                                // );
+                                            PintoButton(
+                                              width: 200,
+                                              label: 'ดูรายการส่งผลิตภัณฑ์',
+                                              buttonColor: deepBlue,
+                                              function: (){
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => sellingProductListPage(
+                                                      productName: widget.productType,
+                                                      productId: widget.stockFarm.productId,
+                                                    )
+                                                  )
+                                                );
                                               },
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ],
