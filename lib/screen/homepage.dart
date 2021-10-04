@@ -83,7 +83,7 @@ class _HomepageState extends State<Homepage> {
                 ),
                 Container(
                   width: screenWidth * 0.8,
-                  height: screenHeight * 0.63,
+                  height: screenHeight * 0.55,
                   child: Expanded(
                       child: FutureBuilder<List<StockPreview>>(
                     future: StockService.getStockPreviews(),
