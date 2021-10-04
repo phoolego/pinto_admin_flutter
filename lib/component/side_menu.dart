@@ -35,7 +35,7 @@ SideMenu({this.firstName, this.lastName, this.role});
                       padding: EdgeInsets.only(right: 10),
                       width: 80,
                       height: 80,
-                      child: Image.asset('assets/images/Demo.png'),
+                      child: Image.asset('assets/images/Icons.jpg'),
                     ),
                     Text(
                       '$firstName \n$lastName \n$role',
@@ -53,7 +53,7 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.home),
               title: Text('จัดการคลังสินค้า',style: kContentTextStyle,),
               onTap: (){
-                //Navigator.pop(context);
+                Navigator.pushNamed(context, '/stock',);
                 print('จัดการคลังสินค้า');
               },
             ),
@@ -73,11 +73,35 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
-              leading: Icon(Icons.shopping_cart),
+              leading: Icon(Icons.account_circle),
+              title: Text('โปรไฟล์ของฉัน',style: kContentTextStyle),
+              onTap: (){
+                print('$firstName เข้าสู่หน้าโปรไฟล์ของฉัน',);
+                Navigator.pushNamed(context, '/profile',);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.build),
               title: Text('StatusWithFarmer',style: kContentTextStyle),
               onTap: (){
                 Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer');
                 print('StatusWithFarmer(DEMO)');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.build),
+              title: Text('FarmProductPage',style: kContentTextStyle),
+              onTap: (){
+                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/');
+                print('FarmProductPage');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.build),
+              title: Text('sellingProductPage',style: kContentTextStyle),
+              onTap: (){
+                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList');
+                print('sellingProductPage');
               },
             ),
             ListTile(

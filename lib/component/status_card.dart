@@ -15,12 +15,6 @@ class StatusCard extends StatelessWidget {
 
 }
 
- void setStatusColor(status){
-    if('ยังไม่ส่งผลิต'==status){
-
-    }
- }
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +30,7 @@ class StatusCard extends StatelessWidget {
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: lightOrange,
+          color: deepBlue,
         ),
         child: Column(
           children: [
@@ -52,18 +46,18 @@ class StatusCard extends StatelessWidget {
                         Container(
                           child: Text(
                             'รายการส่งขายวันที่:\n$sendingProductDate',
-                            style: kHeadingTextStyle,
+                            style: kContentTextWhite,
                           ),
                         ),
                         Row(
                           children: [
                             Text(
                               'สถานะ    ',
-                              style: kContentTextStyle,
+                              style: kContentTextWhite,
                             ),
                             Text(
                               status,
-                              style: kContentTextStyle,
+                              style: kContentTextWhite,
                             ),
                           ],
                         ),
@@ -77,7 +71,7 @@ class StatusCard extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(child: Icon(Icons.more_horiz_outlined)),
+                      Container(child: Icon(Icons.more_horiz_outlined,color: Colors.white,),),
                     ],
                   ))
                 ],

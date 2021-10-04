@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/model/user.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
-import 'package:pinto_admin_flutter/screen/homepage.dart';
+import 'package:pinto_admin_flutter/screen/stock_list_page.dart';
 import 'package:pinto_admin_flutter/service/auth.dart';
 
 class AuthController extends StatefulWidget {
@@ -26,7 +26,7 @@ class _AuthControllerState extends State<AuthController> {
           if(user!.userId==0){
             return const Login();
           }else{
-            return const Homepage();
+            return const StockListPage();
           }
         }
       },

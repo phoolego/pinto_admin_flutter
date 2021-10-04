@@ -3,17 +3,17 @@ import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/component/productListCard.dart';
 import 'package:pinto_admin_flutter/model/stock_preview.dart';
-import 'package:pinto_admin_flutter/screen/stock_dashboard.dart';
+import 'package:pinto_admin_flutter/screen/stock_dashboard_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+class StockListPage extends StatefulWidget {
+  const StockListPage({Key? key}) : super(key: key);
 
   @override
-  _HomepageState createState() => _HomepageState();
+  _StockListPage createState() => _StockListPage();
 }
 
-class _HomepageState extends State<Homepage> {
+class _StockListPage extends State<StockListPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -80,18 +80,18 @@ class _HomepageState extends State<Homepage> {
                             itemCount: listStockPreview.length,
                             itemBuilder: (context, index) =>
                               ProductCard.withoutProductID(
-                                productName: listStockPreview[index].name,
-                                inStock: listStockPreview[index]
-                                        .sellingAmount +
-                                    listStockPreview[index].preorderAmount,
-                                unit: listStockPreview[index].unit,
-                                function: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => StockDashboard(productName: listStockPreview[index].name))
-                                  );
-                                }
+                                  productName: listStockPreview[index].name,
+                                  inStock: listStockPreview[index]
+                                      .sellingAmount +
+                                      listStockPreview[index].preorderAmount,
+                                  unit: listStockPreview[index].unit,
+                                  function: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => StockDashboardPage(productName: listStockPreview[index].name))
+                                    );
+                                  }
                               ),
                           );
                         }
