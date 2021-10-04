@@ -33,12 +33,16 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            Text(
+              'สวัสดี,\nแอดมิน สมหญิง',
+              style: kHeadingTextStyle,
+            ),
+            Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    'สวัสดี,\nแอดมิน สมหญิง',
+                  TextFormField(
+                    textAlign: TextAlign.left,
                     style: kHeadingTextStyle,
                   ),
                 ],
@@ -75,7 +79,14 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-                    ],
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.all(0.0),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -99,59 +110,26 @@ class _HomepageState extends State<Homepage> {
                           itemCount: listStockPreview.length,
                           itemBuilder: (context, index) =>
                               ProductCard.withoutProductID(
-                                  productName: listStockPreview[index].name,
-                                  inStock: listStockPreview[index]
-                                          .sellingAmount +
-                                      listStockPreview[index].preorderAmount,
-                                  unit: listStockPreview[index].Unit,
-                                  function: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                StockDashboard(
-                                                    productName:
-                                                        listStockPreview[index]
-                                                            .name)));
-                                  }),
-                        );
-                      }
-                    },
-                    //       builder: ListView(
-                    //   children: [
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว (mockData)',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {
-                    //             Navigator.pushNamed(context, '/stock/stockDashboard');
-                    //           }),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //
-                    //   ],
-                    // ),
-                  )),
-                )
-              ],
+                                productName: listStockPreview[index].name,
+                                inStock: listStockPreview[index]
+                                        .sellingAmount +
+                                    listStockPreview[index].preorderAmount,
+                                unit: listStockPreview[index].unit,
+                                function: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => StockDashboard(productName: listStockPreview[index].name))
+                                  );
+                                }
+                              ),
+                          );
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),

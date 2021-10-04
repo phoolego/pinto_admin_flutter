@@ -84,6 +84,18 @@ fontSize: 16.0,
 color:deepOrange
 );
 
+const kNormalErrorTextStyle = TextStyle(
+    fontFamily: 'Prompt',
+    fontSize: 16.0,
+    color:notYetDeepRed
+);
+
+const kNormalSuccessTextStyle = TextStyle(
+    fontFamily: 'Prompt',
+    fontSize: 16.0,
+    color:successDeepGreen
+);
+
 const whiteSmallNormalTextStyle = TextStyle(
 fontFamily: 'Prompt',
 fontSize: 14.0,
