@@ -89,6 +89,14 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
+              leading: Icon(Icons.build),
+              title: Text('sellingProductPage',style: kContentTextStyle),
+              onTap: (){
+                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList');
+                print('sellingProductPage');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('ออกจากระบบ',style: kContentTextStyle),
               onTap: ()async {

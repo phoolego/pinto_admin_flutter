@@ -3,6 +3,7 @@ import 'package:pinto_admin_flutter/screen/auth/auth_controller.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
 import 'package:pinto_admin_flutter/screen/farm_product_page.dart';
 import 'package:pinto_admin_flutter/screen/homepage.dart';
+import 'package:pinto_admin_flutter/screen/selling_product_list_page.dart';
 import 'package:pinto_admin_flutter/screen/status_with_farmer.dart';
 import 'package:pinto_admin_flutter/screen/stock_dashboard.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         //'/stock/stockDashboard': (context) => StockDashboard(),
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
         '/stock/stockDashboard/farmDetail/' : (context) => FarmProductPage(),
-        //'/stock/stockDashboard/farmDetail/SellingList' : (context) => FarmSellingList(),
+        '/stock/stockDashboard/farmDetail/SellingList' : (context) => sellingProductListPage(),
         '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => StatusWithFarmer(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
