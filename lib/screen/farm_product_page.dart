@@ -20,23 +20,6 @@ class FarmProductPage extends StatefulWidget {
 class _FarmProductPageState extends State<FarmProductPage> {
   @override
   Widget build(BuildContext context) {
-    // //String
-    // String nullData = 'ไม่มีข้อมูล';
-    // String productName = 'ผักกาดขาว';
-    // //double farmSize = 100;
-    // String unitSize = 'ตร.ม.';
-    // String unitAmount = 'กรัม';
-    // String unitPrice = 'บาท';
-    // String startDate = '01/06/2021';
-    // // double expectAmount = 175;
-    // // String expectDate = '02/07/2021';
-    // double harvestAmount = 25;
-    // String harvestDate = '11/07/2021';
-    // double sellAmount = 25;
-    // double currentStock = 15;
-    // double pricePerOne = 20;
-    // String farmName = 'สมหญิง';
-
     //size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -165,6 +148,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                             Container(
                                               //width: 0.43 * screenWidth,
                                               child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Text('วันที่เริ่มปลูก',
                                                       style: kNormalTextStyle),
@@ -210,6 +194,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                             Container(
                                               //width: 0.43 * screenWidth,
                                               child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Text('วันที่เก็บเกี่ยว',
                                                       style: kNormalTextStyle),
@@ -296,8 +281,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) => sellingProductListPage(
-                                                      productName: widget.productType,
+                                                      farmName: widget.productType,
                                                       productId: widget.stockFarm.productId,
+                                                      productAmount: widget.stockFarm.amount,
+                                                      unit: farmProduct.unit
                                                     )
                                                   )
                                                 );

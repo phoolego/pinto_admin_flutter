@@ -25,11 +25,11 @@ class StockProduct {
   }
   String getStatus(){
     if(sspStatus=='PREPARE'){
-      return 'ยังไม่ส่งผลิตภัณฑ์';
+      return 'ยังไม่ได้รับผลิตภัณฑ์';
     }else if(sspStatus=='DELIVERED'){
-      return 'ยังไม่ได้รับเงิน';
+      return 'ได้รับผลิตภัณฑ์แล้ว';
     }else if(sspStatus=='PAID'){
-      return 'ได้รับเงินแล้ว';
+      return 'ชำระเงินแล้ว';
     }else{
       return '';
     }

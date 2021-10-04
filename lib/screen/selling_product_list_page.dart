@@ -3,20 +3,24 @@ import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/drop_down.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/component/status_card.dart';
+import 'package:pinto_admin_flutter/model/stock_product.dart';
+import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 // ignore: must_be_immutable
 class sellingProductListPage extends StatefulWidget {
-  String productName;
+  String farmName;
   int productId;
-  sellingProductListPage({required this.productName,required this.productId});
+  double productAmount;
+  String unit;
+  sellingProductListPage({required this.farmName,required this.productId, required this.productAmount,required this.unit});
 
   @override
   _sellingProductListPageState createState() => _sellingProductListPageState();
 }
 
 class _sellingProductListPageState extends State<sellingProductListPage> {
-  double currentStock = 15;
-  String unit = 'กรัม';
+  // double currentStock = 15;
+  // String unit = 'กรัม';
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                             ),
                           ),
                           child: Text(
-                            'ฟาร์ม  ${widget.productName}\nจำนวนผลิตภัณฑ์   $currentStock $unit',
+                            'ฟาร์ม  ${widget.farmName}\nจำนวนผลิตภัณฑ์ ${widget.productAmount} ${widget.unit}',
                             style: kContentTextWhite,
                           )),
                     ),
@@ -70,7 +74,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                     SizedBox(
                       width: 0.9 * screenWidth,
                       //height: 0.2 * screenHeight,
-                      child: DropDown.withoutAny(),
+                      child: DropDown.sendStockProduct(),
                     )
                   ],
                 ),
@@ -78,50 +82,35 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.fromLTRB(
-                    0.05 * screenWidth, 0, 0.05 * screenWidth, 0),
-                child: ListView(
-                  children: [
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-                    StatusCard.withoutAny(),
-
-                  ],
+                padding: EdgeInsets.fromLTRB(0.05 * screenWidth, 0, 0.05 * screenWidth, 0),
+                child: FutureBuilder<List<StockProduct>>(
+                  future: StockService.getStockProduct(widget.productId),
+                  builder: (BuildContext context, AsyncSnapshot<List<StockProduct>> snapshot) {
+                    if(!snapshot.hasData){
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }else if(snapshot.hasError){
+                      return Center(
+                          child: Text(snapshot.error.toString())
+                      );
+                    }else{
+                      List<StockProduct> stockProducts = snapshot.data!;
+                      return ListView.builder(
+                        itemCount: stockProducts.length,
+                        itemBuilder: (context, index)=> StatusCard(
+                            stockProduct: stockProducts[index],
+                            function: (){
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(builder: (context) => StatusProductSellPage(stockProduct: stockProducts[index]))
+                              // );
+                            }
+                        ),
+                      );
+                    }
+                  },
                 ),
-                // child: FutureBuilder<List<StockProduct>>(
-                //   future: ProductService.getStockProduct(widget.product.productId),
-                //   builder: (BuildContext context, AsyncSnapshot<List<StockProduct>> snapshot) {
-                //     if(!snapshot.hasData){
-                //       return const Center(
-                //         child: CircularProgressIndicator(),
-                //       );
-                //     }else if(snapshot.hasError){
-                //       return Center(
-                //           child: Text(snapshot.error.toString())
-                //       );
-                //     }else{
-                //       List<StockProduct> stockProducts = snapshot.data!;
-                //       return ListView.builder(
-                //         itemCount: stockProducts.length,
-                //         itemBuilder: (context, index)=> StatusCard(
-                //             stockProduct: stockProducts[index],
-                //             function: (){
-                //               Navigator.push(
-                //                   context,
-                //                   MaterialPageRoute(builder: (context) => StatusProductSellPage(stockProduct: stockProducts[index]))
-                //               );
-                //             }
-                //         ),
-                //       );
-                //     }
-                //   },
-                // ),
               ),
             ),
             // Container(
