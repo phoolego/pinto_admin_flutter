@@ -143,13 +143,13 @@ class _LoginState extends State<Login> {
                           },
                           buttonColor: deepBlue),
                       SizedBox(height: 10),
-                      PintoButton(
-                          width: screenWidth * 0.4,
-                          label: 'สร้างบัญชี',
-                          function: () async {
-                            Navigator.pushNamed(context, '/register');
-                          },
-                          buttonColor: lightBlue),
+                      // PintoButton(
+                      //     width: screenWidth * 0.4,
+                      //     label: 'สร้างบัญชี',
+                      //     function: () async {
+                      //       Navigator.pushNamed(context, '/register');
+                      //     },
+                      //     buttonColor: lightBlue),
                       SizedBox(height: 10),
                     ],
                   )
