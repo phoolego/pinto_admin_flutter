@@ -6,8 +6,9 @@ import 'package:pinto_admin_flutter/component/status_card.dart';
 
 // ignore: must_be_immutable
 class sellingProductListPage extends StatefulWidget {
-  String? productName;
- sellingProductListPage({this.productName});
+  String productName;
+  int productId;
+  sellingProductListPage({required this.productName,required this.productId});
 
   @override
   _sellingProductListPageState createState() => _sellingProductListPageState();
@@ -16,7 +17,6 @@ class sellingProductListPage extends StatefulWidget {
 class _sellingProductListPageState extends State<sellingProductListPage> {
   double currentStock = 15;
   String unit = 'กรัม';
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +74,6 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                     )
                   ],
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.end,
-                //   children: [
-                //
-                //     SizedBox(
-                //       width: 0.05 * screenWidth,
-                //     ),
-                //   ],
-                // )
               ],
             ),
             Expanded(

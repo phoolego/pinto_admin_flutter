@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         //'/stock/stockDashboard': (context) => StockDashboard(),
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
         // '/stock/stockDashboard/farmDetail/' : (context) => FarmProductPage(),
-        '/stock/stockDashboard/farmDetail/SellingList' : (context) => sellingProductListPage(),
+        // '/stock/stockDashboard/farmDetail/SellingList' : (context) => sellingProductListPage(),
         '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => SellingProductStatusPage(),
         '/stock/productPriceTable' : (context) => ProductPriceTable(),
       },

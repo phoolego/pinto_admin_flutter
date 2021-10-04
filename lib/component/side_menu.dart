@@ -11,13 +11,11 @@ String? lastName = '';
 String? role = '';
 
 SideMenu.withoutAny(){
-  this.firstName = 'Firstname';
-  this.lastName = 'Lastname';
-  this.role = 'Role';
+  this.firstName = Auth.user.firstname;
+  this.lastName = Auth.user.lastname;
+  this.role = Auth.user.role;
 }
 SideMenu({this.firstName, this.lastName, this.role});
-
-
 
   @override
   Widget build(BuildContext context) {
