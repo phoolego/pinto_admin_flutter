@@ -144,6 +144,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                             Container(
                                               //width: 0.43 * screenWidth,
                                               child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Text('วันที่เริ่มปลูก',
                                                       style: kNormalTextStyle),
@@ -189,6 +190,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                             Container(
                                               //width: 0.43 * screenWidth,
                                               child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Text('วันที่เก็บเกี่ยว',
                                                       style: kNormalTextStyle),
@@ -254,8 +256,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) => sellingProductListPage(
-                                                      productName: widget.productType,
+                                                      farmName: widget.productType,
                                                       productId: widget.stockFarm.productId,
+                                                      productAmount: widget.stockFarm.amount,
+                                                      unit: farmProduct.unit
                                                     )
                                                   )
                                                 );
