@@ -5,11 +5,13 @@ import 'package:pinto_admin_flutter/model/product_type.dart';
 import 'package:pinto_admin_flutter/service/product_service.dart';
 
 class ProductPriceTable extends StatefulWidget {
+
   @override
   _ProductPriceTableState createState() => _ProductPriceTableState();
 }
 
 class _ProductPriceTableState extends State<ProductPriceTable> {
+  String keyword = '';
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -55,6 +57,12 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                     ),
                   ),
                 ),
+                onChanged: (val) {
+                  setState(() {
+                    keyword = val;
+                    print(keyword);
+                  });
+                },
               ),
             ),
             Container(
@@ -135,7 +143,8 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                               child: CircularProgressIndicator(),
                             );
                           } else {
-                            List<ProductType> productTypeList = snapshot.data!;
+                            //List<ProductType> productTypeList = snapshot.data!;
+                            List<ProductType> productTypeList = searchOperation(keyword, snapshot.data!);
                             return ListView.builder(
                                 itemCount: productTypeList.length,
                                 itemBuilder: (context, index) =>
@@ -158,6 +167,19 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
         ),
       ),
     );
+  }
+  List<ProductType> searchOperation(String keyword, List<ProductType> listOfProduct) {
+    List<ProductType> result = [];
+    if(keyword.isNotEmpty){
+      for (int index = 0; index < listOfProduct.length; index++) {
+        if (listOfProduct[index].name.contains(keyword)) {
+          result.add(listOfProduct[index]);
+        }
+      }
+      return result;
+    }else{
+      return listOfProduct;
+    }
   }
 }
 
@@ -229,4 +251,5 @@ class productPriceRow extends StatelessWidget {
       ),
     );
   }
+
 }
