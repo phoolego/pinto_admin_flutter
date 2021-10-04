@@ -4,6 +4,7 @@ import 'package:pinto_admin_flutter/constant.dart';
 // import 'package:pinto_farmer_flutter/screen/farmer_product_sale_Page.dart';
 import 'package:pinto_admin_flutter/service/auth.dart';
 
+
 class SideMenu extends StatelessWidget {
 
 String? firstName = '';
@@ -79,22 +80,22 @@ SideMenu({this.firstName, this.lastName, this.role});
                 Navigator.pushNamed(context, '/profile',);
               },
             ),
-            ListTile(
-              leading: Icon(Icons.build),
-              title: Text('StatusWithFarmer',style: kContentTextStyle),
-              onTap: (){
-                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer');
-                print('StatusWithFarmer(DEMO)');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.build),
-              title: Text('sellingProductPage',style: kContentTextStyle),
-              onTap: (){
-                Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList');
-                print('sellingProductPage');
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.build),
+            //   title: Text('StatusWithFarmer',style: kContentTextStyle),
+            //   onTap: (){
+            //     Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer');
+            //     print('StatusWithFarmer(DEMO)');
+            //   },
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.build),
+            //   title: Text('sellingProductPage',style: kContentTextStyle),
+            //   onTap: (){
+            //     Navigator.pushNamed(context, '/stock/stockDashboard/farmDetail/SellingList');
+            //     print('sellingProductPage');
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('ออกจากระบบ',style: kContentTextStyle),

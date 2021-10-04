@@ -5,15 +5,17 @@ import 'package:pinto_admin_flutter/component/productListCard.dart';
 import 'package:pinto_admin_flutter/model/stock_preview.dart';
 import 'package:pinto_admin_flutter/screen/stock_dashboard_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
+import 'package:pinto_admin_flutter/service/auth.dart';
 
 class StockListPage extends StatefulWidget {
-  const StockListPage({Key? key}) : super(key: key);
-
   @override
   _StockListPage createState() => _StockListPage();
 }
 
 class _StockListPage extends State<StockListPage> {
+  String firstName = Auth.user.firstname;
+  String keyword = '';
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -33,7 +35,7 @@ class _StockListPage extends State<StockListPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'สวัสดี,\nแอดมิน สมหญิง',
+              'สวัสดี,\nแอดมิน ${firstName}',
               style: kHeadingTextStyle,
             ),
             Expanded(
@@ -60,6 +62,12 @@ class _StockListPage extends State<StockListPage> {
                         ),
                       ),
                     ),
+                    onChanged: (val) {
+                      setState(() {
+                        keyword = val;
+                        print(keyword);
+                      });
+                    },
                   ),
                   SizedBox(
                     height: 10,
@@ -67,30 +75,35 @@ class _StockListPage extends State<StockListPage> {
                   Expanded(
                     child: FutureBuilder<List<StockPreview>>(
                       future: StockService.getStockPreviews(),
-                      builder: (BuildContext context, AsyncSnapshot<List<StockPreview>> snapshot) {
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<StockPreview>> snapshot) {
                         if (!snapshot.hasData) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
                         } else {
-                          List<StockPreview> listStockPreview = snapshot.data!;
+                          //List<StockPreview> listStockPreview = snapshot.data!;
+                          List<StockPreview> listStockPreview = searchOperation(keyword, snapshot.data!);
                           return ListView.builder(
                             itemCount: listStockPreview.length,
                             itemBuilder: (context, index) =>
-                              ProductCard.withoutProductID(
-                                  productName: listStockPreview[index].name,
-                                  inStock: listStockPreview[index]
-                                      .sellingAmount +
-                                      listStockPreview[index].preorderAmount,
-                                  unit: listStockPreview[index].unit,
-                                  function: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => StockDashboardPage(productName: listStockPreview[index].name))
-                                    );
-                                  }
-                              ),
+                                ProductCard.withoutProductID(
+                                    productName: listStockPreview[index].name,
+                                    inStock: listStockPreview[index]
+                                            .sellingAmount +
+                                        listStockPreview[index].preorderAmount,
+                                    unit: listStockPreview[index].unit,
+                                    function: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  StockDashboardPage(
+                                                      productName:
+                                                          listStockPreview[
+                                                                  index]
+                                                              .name)));
+                                    }),
                           );
                         }
                       },
@@ -103,5 +116,19 @@ class _StockListPage extends State<StockListPage> {
         ),
       ),
     );
+  }
+
+  List<StockPreview> searchOperation(String keyword, List<StockPreview> listStock) {
+    List<StockPreview> result = [];
+    if(keyword.isNotEmpty){
+      for (int index = 0; index < listStock.length; index++) {
+        if (listStock[index].name.contains(keyword)) {
+          result.add(listStock[index]);
+        }
+      }
+      return result;
+    }else{
+      return listStock;
+    }
   }
 }

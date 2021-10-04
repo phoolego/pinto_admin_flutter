@@ -26,7 +26,7 @@ class _AuthControllerState extends State<AuthController> {
           if(user!.userId==0){
             return const Login();
           }else{
-            return const StockListPage();
+            return StockListPage();
           }
         }
       },
