@@ -35,7 +35,7 @@ SideMenu({this.firstName, this.lastName, this.role});
                       padding: EdgeInsets.only(right: 10),
                       width: 80,
                       height: 80,
-                      child: Image.asset('assets/images/Demo.png'),
+                      child: Image.asset('assets/images/Icons.jpg'),
                     ),
                     Text(
                       '$firstName \n$lastName \n$role',
@@ -53,7 +53,7 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.home),
               title: Text('จัดการคลังสินค้า',style: kContentTextStyle,),
               onTap: (){
-                //Navigator.pop(context);
+                Navigator.pushNamed(context, '/stock',);
                 print('จัดการคลังสินค้า');
               },
             ),
