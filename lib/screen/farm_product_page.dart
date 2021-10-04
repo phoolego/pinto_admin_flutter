@@ -11,15 +11,22 @@ import 'package:pinto_admin_flutter/service/product_service.dart';
 class FarmProductPage extends StatefulWidget {
   String productType;
   StockFarm stockFarm;
-  FarmProductPage({required this.stockFarm, required this.productType});
+  Map operation;
+  FarmProductPage({required this.stockFarm,required this.productType, required this.operation,});
 
   @override
   State<FarmProductPage> createState() => _FarmProductPageState();
 }
 
 class _FarmProductPageState extends State<FarmProductPage> {
+  void reload(){
+    setState(() {
+      print('reload farmProduct');
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    widget.operation['farmProduct'] = reload;
     //size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -39,10 +46,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
       ),
       body: SafeArea(
         child: FutureBuilder<FarmProduct>(
-            future: ProductService.getFarmProduct(
-                widget.stockFarm.productId, widget.stockFarm.farmerId),
-            builder:
-                (BuildContext context, AsyncSnapshot<FarmProduct> snapshot) {
+            future: ProductService.getFarmProduct(widget.stockFarm.productId, widget.stockFarm.farmerId),
+            builder: (BuildContext context, AsyncSnapshot<FarmProduct> snapshot) {
               if (!snapshot.hasData) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -73,9 +78,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.fromLTRB(
-                                  screenWidth * 0.1, 5, screenWidth * 0.03, 0),
-                              height: screenHeight * 0.1,
+                              padding: EdgeInsets.fromLTRB(screenWidth*0.1, 5, screenWidth*0.03, 0),
+                              height: screenHeight*0.1,
                               width: screenWidth,
                               decoration: BoxDecoration(
                                 color: mediumBlue,
@@ -85,17 +89,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                 ),
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'ฟาร์ม ${widget.stockFarm.farmName}',
-                                    style: kContentTextWhite,
-                                  ),
-                                  Text(
-                                    'จำนวนผลิตภัณฑ์ ${farmProduct.currentStock} ${farmProduct.unit} ',
-                                    style: kContentTextWhite,
-                                  )
+                                  Text('ฟาร์ม ${widget.stockFarm.farmName}',style: kContentTextWhite,),
+                                  Text('จำนวนผลิตภัณฑ์ ${farmProduct.currentStock} ${farmProduct.unit} ',style: kContentTextWhite,)
                                 ],
                               ),
                             ),
@@ -105,7 +102,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                   kToolbarHeight,
                               width: screenWidth,
                               padding: EdgeInsets.fromLTRB(
-                                  0, 0, 0, 0.01 * screenHeight),
+                                  0,
+                                  0,
+                                  0,
+                                  0.01 * screenHeight),
                               // alignment: Alignment.bottomCenter,
                               decoration: BoxDecoration(
                                 color: deepWhite,
@@ -115,7 +115,6 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: screenHeight * 0.03,),
                                     Container(
                                       alignment: Alignment.center,
                                       //margin: EdgeInsets.only(top: 0.01 * screenHeight),
@@ -125,11 +124,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                           left: 0.15 * screenWidth,
                                           right: 0.15 * screenWidth),
                                       decoration: BoxDecoration(
-                                        color: deepWhite,
+                                        color: lightGrayBackground,
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
                                             children: [
@@ -137,13 +135,11 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 width: 0.43 * screenWidth,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                                   children: [
                                                     Text('ราคาต่อหน่วย',
-                                                        style:
-                                                            kNormalTextStyle),
-                                                    Text(
-                                                        '${farmProduct.buyPrice} ${farmProduct.priceUnit}',
+                                                        style: kNormalTextStyle),
+                                                    Text('${farmProduct.buyPrice} ${farmProduct.priceUnit}',
                                                         style: kNormalTextStyle)
                                                   ],
                                                 ),
@@ -155,18 +151,12 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                               Container(
                                                 //width: 0.43 * screenWidth,
                                                 child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
+                                                  crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
                                                     Text('วันที่เริ่มปลูก',
-                                                        style:
-                                                            kNormalTextStyle),
-                                                    Text(
-                                                        DateFormat.getFullDate(
-                                                            farmProduct
-                                                                .plantDate),
-                                                        style:
-                                                            kNormalTextStyle),
+                                                        style: kNormalTextStyle),
+                                                    Text(DateFormat.getFullDate(farmProduct.plantDate),
+                                                        style: kNormalTextStyle),
                                                   ],
                                                 ),
                                               )
@@ -181,11 +171,9 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                           bottom: 0.01 * screenHeight,
                                           left: 0.15 * screenWidth,
                                           right: 0.15 * screenWidth),
-                                      decoration:
-                                          BoxDecoration(color: deepWhite),
+                                      decoration: BoxDecoration(color: deepWhite),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
                                             children: [
@@ -193,13 +181,11 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 width: 0.43 * screenWidth,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                                   children: [
-                                                    Text('ปริมาณที่เก็บเกี่ยว',
-                                                        style:
-                                                            kNormalTextStyle),
-                                                    Text(
-                                                        '${farmProduct.getUsedAmount()} ${farmProduct.unit}',
+                                                    Text(farmProduct.status=='PLANTING'?'ปริมาณที่คาดว่าเก็บเกี่ยว':'ปริมาณที่เก็บเกี่ยว',
+                                                        style: kNormalTextStyle),
+                                                    Text('${farmProduct.getUsedAmount()} ${farmProduct.unit}',
                                                         style: kNormalTextStyle)
                                                   ],
                                                 ),
@@ -211,18 +197,12 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                               Container(
                                                 //width: 0.43 * screenWidth,
                                                 child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
+                                                  crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
-                                                    Text('วันที่เก็บเกี่ยว',
-                                                        style:
-                                                            kNormalTextStyle),
-                                                    Text(
-                                                        DateFormat.getFullDate(
-                                                            farmProduct
-                                                                .getUsedPlanting()!),
-                                                        style:
-                                                            kNormalTextStyle),
+                                                    Text(farmProduct.status=='PLANTING'?'วันที่คาดว่าเก็บเกี่ยว':'วันที่เก็บเกี่ยว',
+                                                        style: kNormalTextStyle),
+                                                    Text(DateFormat.getFullDate(farmProduct.getUsedPlanting()!),
+                                                        style: kNormalTextStyle),
                                                   ],
                                                 ),
                                               )
@@ -238,14 +218,13 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                           left: 0.15 * screenWidth,
                                           right: 0.02 * screenWidth),
                                       decoration: BoxDecoration(
-                                        color: deepWhite,
+                                        color: lightGrayBackground,
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(10),
                                         ),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
                                             children: [
@@ -253,14 +232,11 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 width: 0.70 * screenWidth,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                        'ปริมาณที่ส่งขายทั้งหมด',
-                                                        style:
-                                                            kNormalTextStyle),
-                                                    Text(
-                                                        '${widget.stockFarm.amount} ${farmProduct.unit}',
+                                                    Text('ปริมาณที่ส่งขายทั้งหมด',
+                                                        style: kNormalTextStyle),
+                                                    Text('${widget.stockFarm.amount} ${farmProduct.unit}',
                                                         style: kNormalTextStyle)
                                                   ],
                                                 ),
@@ -271,11 +247,10 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       ),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(
-                                          top: 0.03 * screenHeight),
+                                      padding:
+                                      EdgeInsets.only(top: 0.03 * screenHeight),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Column(
                                             children: [
@@ -283,22 +258,19 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 width: 200,
                                                 label: 'ดูรายการส่งผลิตภัณฑ์',
                                                 buttonColor: deepBlue,
-                                                function: () {
+                                                function: (){
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) => sellingProductListPage(
-                                                              farmName: widget
-                                                                  .productType,
-                                                              productId: widget
-                                                                  .stockFarm
-                                                                  .productId,
-                                                              productAmount:
-                                                                  widget
-                                                                       .stockFarm
-                                                                      .amount,
-                                                              unit: farmProduct
-                                                                  .unit)));
+                                                            farmName: widget.productType,
+                                                            productId: widget.stockFarm.productId,
+                                                            productAmount: widget.stockFarm.amount,
+                                                            farmProduct: farmProduct,
+                                                            operation: widget.operation,
+                                                          )
+                                                      )
+                                                  );
                                                 },
                                               ),
                                             ],
@@ -320,7 +292,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                   ),
                 );
               }
-            }),
+            }
+        ),
       ),
     );
   }

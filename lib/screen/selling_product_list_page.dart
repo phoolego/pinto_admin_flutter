@@ -3,7 +3,9 @@ import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/drop_down.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/component/status_card.dart';
+import 'package:pinto_admin_flutter/model/farm_product.dart';
 import 'package:pinto_admin_flutter/model/stock_product.dart';
+import 'package:pinto_admin_flutter/screen/selling_product_status_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 // ignore: must_be_immutable
@@ -11,12 +13,15 @@ class sellingProductListPage extends StatefulWidget {
   String farmName;
   int productId;
   double productAmount;
-  String unit;
-  sellingProductListPage(
-      {required this.farmName,
-      required this.productId,
-      required this.productAmount,
-      required this.unit});
+  FarmProduct farmProduct;
+  Map operation;
+  sellingProductListPage({
+    required this.farmName,
+    required this.productId,
+    required this.productAmount,
+    required this.farmProduct,
+    required this.operation,
+  });
 
   @override
   _sellingProductListPageState createState() => _sellingProductListPageState();
@@ -25,9 +30,14 @@ class sellingProductListPage extends StatefulWidget {
 class _sellingProductListPageState extends State<sellingProductListPage> {
   // double currentStock = 15;
   // String unit = 'กรัม';
-
+  void reload(){
+    setState(() {
+      print('reload ssp');
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    widget.operation['sspList']=reload;
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -66,7 +76,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                             ),
                           ),
                           child: Text(
-                            'ฟาร์ม  ${widget.farmName}\nจำนวนผลิตภัณฑ์ ${widget.productAmount} ${widget.unit}',
+                            'ฟาร์ม  ${widget.farmName}\nจำนวนผลิตภัณฑ์ ${widget.productAmount} ${widget.farmProduct.unit}',
                             style: kContentTextWhite,
                           )),
                     ),
@@ -104,12 +114,17 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                         itemCount: stockProducts.length,
                         itemBuilder: (context, index) => StatusCard(
                             stockProduct: stockProducts[index],
-                            function: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(builder: (context) => StatusProductSellPage(stockProduct: stockProducts[index]))
-                              // );
-                            }),
+                            function: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SellingProductStatusPage(
+                                    farmProduct: widget.farmProduct,
+                                    stockProduct: stockProducts[index],
+                                    operation: widget.operation,
+                                    ))
+                              );
+                            }
+                        ),
                       );
                     }
                   },
