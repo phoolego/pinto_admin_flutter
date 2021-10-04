@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 
 class PintoButton extends StatelessWidget {
-  double? width;
+  double width;
   String label = '';
   var function;
-  Color? buttonColor = Colors.amber;
-  IconData? icon;
+  Color buttonColor = Colors.amber;
+  TextStyle textStyle=whiteSmallNormalTextStyle;
 
 
   PintoButton(
-      {this.width,
+      {this.width=200,
       required this.label,
       required this.function,
       required this.buttonColor,
-      this.icon});
+      this.textStyle=whiteSmallNormalTextStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class PintoButton extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: whiteSmallNormalTextStyle,
+                style: textStyle,
               ),
             ],
           ),
