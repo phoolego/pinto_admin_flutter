@@ -26,12 +26,11 @@ class MyApp extends StatelessWidget {
         '/': (context) => const AuthController(),
         '/login': (context) => const Login(),
         '/stock': (context) => const Homepage(),
-        '/stock/stockDashboard': (context) => StockDashboard(),
+        //'/stock/stockDashboard': (context) => StockDashboard(),
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
         //'/stock/stockDashboard/farmDetail/' : (context) => FarmDetail(),
         //'/stock/stockDashboard/farmDetail/SellingList' : (context) => FarmSellingList(),
         '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => StatusWithFarmer(),
-
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

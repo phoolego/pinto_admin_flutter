@@ -3,6 +3,9 @@ import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/farmInfoCard.dart';
 
 class StockDashboard extends StatefulWidget {
+  String productName = '';
+  StockDashboard({required this.productName});
+
   @override
   _StockDashboardState createState() => _StockDashboardState();
 }
@@ -15,6 +18,7 @@ class _StockDashboardState extends State<StockDashboard> {
   String unit = 'กรัม';
   double customerProOrder = 15;
   double customerSales = 5;
+
 
   @override
   Widget build(BuildContext context) {

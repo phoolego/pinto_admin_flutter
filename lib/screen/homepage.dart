@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/component/productListCard.dart';
+import 'package:pinto_admin_flutter/model/stock_preview.dart';
+import 'package:pinto_admin_flutter/screen/stock_dashboard.dart';
+import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -34,7 +37,7 @@ class _HomepageState extends State<Homepage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'สวัสดี,\nแอดมิน สมหญิิง',
+                    'สวัสดี,\nแอดมิน สมหญิง',
                     style: kHeadingTextStyle,
                   ),
                 ],
@@ -81,37 +84,70 @@ class _HomepageState extends State<Homepage> {
                   width: screenWidth * 0.8,
                   height: screenHeight * 0.63,
                   child: Expanded(
-                      child: ListView(
-                    children: [
-                      ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว (mockData)',
-                          inStock: 10,
-                          unit: 'กรัม',
-                          function: () {
-                            Navigator.pushNamed(context, '/stock/stockDashboard');
-                          }),
-                      ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว',
-                          inStock: 10,
-                          unit: 'กรัม',
-                          function: () {}),
-                      ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว',
-                          inStock: 10,
-                          unit: 'กรัม',
-                          function: () {}),
-                      ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว',
-                          inStock: 10,
-                          unit: 'กรัม',
-                          function: () {}),
-                      ProductCard.withoutProductID(
-                          productName: 'ผักกาดขาว',
-                          inStock: 10,
-                          unit: 'กรัม',
-                          function: () {}),
-
-                    ],
+                      child: FutureBuilder<List<StockPreview>>(
+                    future: StockService.getStockPreviews(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<StockPreview>> snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        List<StockPreview> listStockPreview = snapshot.data!;
+                        return ListView.builder(
+                          itemCount: listStockPreview.length,
+                          itemBuilder: (context, index) =>
+                              ProductCard.withoutProductID(
+                                  productName: listStockPreview[index].name,
+                                  inStock: listStockPreview[index]
+                                          .sellingAmount +
+                                      listStockPreview[index].preorderAmount,
+                                  unit: listStockPreview[index].Unit,
+                                  function: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                StockDashboard(
+                                                    productName:
+                                                        listStockPreview[index]
+                                                            .name)));
+                                  }),
+                        );
+                      }
+                    },
+                    //       builder: ListView(
+                    //   children: [
+                    //       ProductCard.withoutProductID(
+                    //           productName: 'ผักกาดขาว (mockData)',
+                    //           inStock: 10,
+                    //           unit: 'กรัม',
+                    //           function: () {
+                    //             Navigator.pushNamed(context, '/stock/stockDashboard');
+                    //           }),
+                    //       ProductCard.withoutProductID(
+                    //           productName: 'ผักกาดขาว',
+                    //           inStock: 10,
+                    //           unit: 'กรัม',
+                    //           function: () {}),
+                    //       ProductCard.withoutProductID(
+                    //           productName: 'ผักกาดขาว',
+                    //           inStock: 10,
+                    //           unit: 'กรัม',
+                    //           function: () {}),
+                    //       ProductCard.withoutProductID(
+                    //           productName: 'ผักกาดขาว',
+                    //           inStock: 10,
+                    //           unit: 'กรัม',
+                    //           function: () {}),
+                    //       ProductCard.withoutProductID(
+                    //           productName: 'ผักกาดขาว',
+                    //           inStock: 10,
+                    //           unit: 'กรัม',
+                    //           function: () {}),
+                    //
+                    //   ],
+                    // ),
                   )),
                 )
               ],

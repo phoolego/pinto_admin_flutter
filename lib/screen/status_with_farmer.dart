@@ -23,8 +23,6 @@ class _StatusWithFarmerState extends State<StatusWithFarmer> {
   Function buttonFunc = (){};
 
 
-
-
   void checkStatus(int status) {
     if (status == 1) {
       strStatus = 'ยังไม่ได้รับผลิตภัณฑ์';
