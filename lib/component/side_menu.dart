@@ -11,13 +11,11 @@ String? lastName = '';
 String? role = '';
 
 SideMenu.withoutAny(){
-  this.firstName = 'Firstname';
-  this.lastName = 'Lastname';
-  this.role = 'Role';
+  this.firstName = Auth.user.firstname;
+  this.lastName = Auth.user.lastname;
+  this.role = Auth.user.role;
 }
 SideMenu({this.firstName, this.lastName, this.role});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +56,11 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
-              leading: Icon(Icons.shopping_cart),
+              leading: Icon(Icons.table_chart),
               title: Text('ตารางรับซื้อ',style: kContentTextStyle,),
               onTap: (){
                 //Navigator.pop it will just close side menu
+                Navigator.pushNamed(context, '/stock/productPriceTable');
                 print('ตารางรับซื้อ');
               },
             ),

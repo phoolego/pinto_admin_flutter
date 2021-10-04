@@ -7,6 +7,7 @@ import 'package:pinto_admin_flutter/screen/selling_product_list_page.dart';
 import 'package:pinto_admin_flutter/screen/selling_product_status_page.dart';
 import 'package:pinto_admin_flutter/screen/stock_dashboard_page.dart';
 import 'package:pinto_admin_flutter/screen/my_profile_page.dart';
+import 'package:pinto_admin_flutter/screen/product_price_table_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         // '/stock/stockDashboard/farmDetail/' : (context) => FarmProductPage(),
         // '/stock/stockDashboard/farmDetail/SellingList' : (context) => sellingProductListPage(),
         '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => SellingProductStatusPage(),
+        '/stock/productPriceTable' : (context) => ProductPriceTable(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

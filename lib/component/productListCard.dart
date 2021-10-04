@@ -42,7 +42,7 @@ class ProductCard extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(screenWidth*0.015, 0 , screenWidth*0.015, screenHeight*0.01),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: deepBlue,
+                color: mediumBlue,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

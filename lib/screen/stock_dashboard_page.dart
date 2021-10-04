@@ -14,13 +14,7 @@ class StockDashboardPage extends StatefulWidget {
 }
 
 class _StockDashboardPageState extends State<StockDashboardPage> {
-  // String productName = 'ผักกาดขาว (mockData)';
-  // double totalInStock = 40;
-  // double openToSales = 25;
-  // double openToPreOrder = 15;
-  // String unit = 'กรัม';
-  // double customerProOrder = 15;
-  // double customerSales = 5;
+
 
 
   @override

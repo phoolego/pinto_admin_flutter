@@ -72,13 +72,13 @@ class _FarmProductPageState extends State<FarmProductPage> {
                         children: [
                           Container(
                             padding: EdgeInsets.fromLTRB(screenWidth*0.1, 5, screenWidth*0.03, 0),
-                            height: screenHeight*0.08,
+                            height: screenHeight*0.1,
                             width: screenWidth,
                             decoration: BoxDecoration(
-                              color: deepBlue,
+                              color: mediumBlue,
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
                               ),
                             ),
                             child: Column(
@@ -102,10 +102,6 @@ class _FarmProductPageState extends State<FarmProductPage> {
                             // alignment: Alignment.bottomCenter,
                             decoration: BoxDecoration(
                               color: deepWhite,
-                              // borderRadius: BorderRadius.only(
-                              //   topLeft: Radius.circular(20),
-                              //   topRight: Radius.circular(20),
-                              // ),
                             ),
                             child: SingleChildScrollView(
                               // margin: EdgeInsets.only(top: 0.1*screenHeight),
@@ -226,7 +222,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                         Column(
                                           children: [
                                             Container(
-                                              width: 0.43 * screenWidth,
+                                              width: 0.70 * screenWidth,
                                               child: Column(
                                                 crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -240,29 +236,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                             )
                                           ],
                                         ),
-                                        Column(
-                                          children: [
-                                            Container(
-                                              //width: 0.43 * screenWidth,
-                                              child: Column(
-                                                children: [
-                                                  Text('',
-                                                      style: kNormalTextStyle),
-                                                  Text('',
-                                                      style: kNormalTextStyle),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        )
                                       ],
                                     ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: 0.08 * screenHeight,
-                                        bottom: 0.01 * screenHeight),
-                                    decoration: BoxDecoration(color: deepWhite),
                                   ),
                                   Container(
                                     padding:
