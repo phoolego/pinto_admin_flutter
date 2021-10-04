@@ -32,124 +32,74 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'สวัสดี,\nแอดมิน สมหญิง',
-                    style: kHeadingTextStyle,
-                  ),
-                ],
-              ),
+            Text(
+              'สวัสดี,\nแอดมิน สมหญิง',
+              style: kHeadingTextStyle,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          textAlign: TextAlign.left,
-                          style: kHeadingTextStyle,
-                          decoration: const InputDecoration(
-                            hintText: 'ค้นหา',
-                            hintStyle: kNormalTextStyle,
-                            contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.all(0.0),
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextFormField(
+                    textAlign: TextAlign.left,
+                    style: kHeadingTextStyle,
+                    decoration: const InputDecoration(
+                      hintText: 'ค้นหา',
+                      hintStyle: kNormalTextStyle,
+                      contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
                       ),
-                    ],
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.all(0.0),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: screenWidth * 0.8,
-                  height: screenHeight * 0.63,
-                  child: Expanded(
-                      child: FutureBuilder<List<StockPreview>>(
-                    future: StockService.getStockPreviews(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<List<StockPreview>> snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        List<StockPreview> listStockPreview = snapshot.data!;
-                        return ListView.builder(
-                          itemCount: listStockPreview.length,
-                          itemBuilder: (context, index) =>
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    // width: screenWidth * 0.8,
+                    // height: screenHeight * 0.70,
+                    child: FutureBuilder<List<StockPreview>>(
+                      future: StockService.getStockPreviews(),
+                      builder: (BuildContext context, AsyncSnapshot<List<StockPreview>> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          List<StockPreview> listStockPreview = snapshot.data!;
+                          return ListView.builder(
+                            itemCount: listStockPreview.length,
+                            itemBuilder: (context, index) =>
                               ProductCard.withoutProductID(
-                                  productName: listStockPreview[index].name,
-                                  inStock: listStockPreview[index]
-                                          .sellingAmount +
-                                      listStockPreview[index].preorderAmount,
-                                  unit: listStockPreview[index].Unit,
-                                  function: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                StockDashboard(
-                                                    productName:
-                                                        listStockPreview[index]
-                                                            .name)));
-                                  }),
-                        );
-                      }
-                    },
-                    //       builder: ListView(
-                    //   children: [
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว (mockData)',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {
-                    //             Navigator.pushNamed(context, '/stock/stockDashboard');
-                    //           }),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //       ProductCard.withoutProductID(
-                    //           productName: 'ผักกาดขาว',
-                    //           inStock: 10,
-                    //           unit: 'กรัม',
-                    //           function: () {}),
-                    //
-                    //   ],
-                    // ),
-                  )),
-                )
-              ],
+                                productName: listStockPreview[index].name,
+                                inStock: listStockPreview[index]
+                                        .sellingAmount +
+                                    listStockPreview[index].preorderAmount,
+                                unit: listStockPreview[index].unit,
+                                function: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => StockDashboard(productName: listStockPreview[index].name))
+                                  );
+                                }
+                              ),
+                          );
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
