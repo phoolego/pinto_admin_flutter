@@ -226,7 +226,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              widget.farmProduct.status=='PLANTING'?'ปริมาณที่คาดว่าจะส่งขาย':'ปริมาณที่จะส่งขาย',
+                              widget.farmProduct.status=='PLANTING'?'ปริมาณที่จะส่งขาย*':'ปริมาณที่ส่งขาย',
                               style: kContentTextStyle,
                             ),
                             Text(
