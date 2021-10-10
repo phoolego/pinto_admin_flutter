@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'เกษตรกร',
+                            'ผู้ดูแลระบบ',
                             style: kNormalTextStyle,
                             textAlign: TextAlign.left,
                           ),

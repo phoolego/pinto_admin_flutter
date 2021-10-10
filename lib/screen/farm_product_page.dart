@@ -90,6 +90,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text('ฟาร์ม ${widget.stockFarm.farmName}',style: kContentTextWhite,),
                                   Text('จำนวนผลิตภัณฑ์ ${farmProduct.currentStock} ${farmProduct.unit} ',style: kContentTextWhite,)
@@ -102,10 +103,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                   kToolbarHeight,
                               width: screenWidth,
                               padding: EdgeInsets.fromLTRB(
-                                  0,
-                                  0,
-                                  0,
-                                  0.01 * screenHeight),
+                                  0,0,0,0.01 * screenHeight),
                               // alignment: Alignment.bottomCenter,
                               decoration: BoxDecoration(
                                 color: deepWhite,
@@ -121,8 +119,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       padding: EdgeInsets.only(
                                           top: 0.01 * screenHeight,
                                           bottom: 0.01 * screenHeight,
-                                          left: 0.15 * screenWidth,
-                                          right: 0.15 * screenWidth),
+                                          left: 0.1 * screenWidth,
+                                          right: 0.1 * screenWidth),
                                       decoration: BoxDecoration(
                                         color: lightGrayBackground,
                                       ),
@@ -169,8 +167,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       padding: EdgeInsets.only(
                                           top: 0.01 * screenHeight,
                                           bottom: 0.01 * screenHeight,
-                                          left: 0.15 * screenWidth,
-                                          right: 0.15 * screenWidth),
+                                          left: 0.1 * screenWidth,
+                                          right: 0.1 * screenWidth),
                                       decoration: BoxDecoration(color: deepWhite),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,7 +181,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                   crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(farmProduct.status=='PLANTING'?'ปริมาณที่คาดว่าเก็บเกี่ยว':'ปริมาณที่เก็บเกี่ยว',
+                                                    Text(farmProduct.status=='PLANTING'?'ปริมาณที่เก็บเกี่ยว\n(คาดการ)':'ปริมาณที่เก็บเกี่ยว',
                                                         style: kNormalTextStyle),
                                                     Text('${farmProduct.getUsedAmount()} ${farmProduct.unit}',
                                                         style: kNormalTextStyle)
@@ -199,7 +197,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                 child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
-                                                    Text(farmProduct.status=='PLANTING'?'วันที่คาดว่าเก็บเกี่ยว':'วันที่เก็บเกี่ยว',
+                                                    Text(farmProduct.status=='PLANTING'?'วันที่เก็บเกี่ยว\n(คาดการ)':'วันที่เก็บเกี่ยว',
                                                         style: kNormalTextStyle),
                                                     Text(DateFormat.getFullDate(farmProduct.getUsedPlanting()!),
                                                         style: kNormalTextStyle),
@@ -215,8 +213,8 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                       padding: EdgeInsets.only(
                                           top: 0.01 * screenHeight,
                                           bottom: 0.01 * screenHeight,
-                                          left: 0.15 * screenWidth,
-                                          right: 0.02 * screenWidth),
+                                          left: 0.1 * screenWidth,
+                                          right: 0.01 * screenWidth),
                                       decoration: BoxDecoration(
                                         color: lightGrayBackground,
                                         borderRadius: BorderRadius.all(

@@ -63,7 +63,7 @@ class StockService {
   }
   static Future<void> receiveStockProduct(int sspId) async {
     try {
-      await Api.dio.put('/stock-product/recive',
+      await Api.dio.put('/stock-product/receive',
         options: Options(
           headers: {
             'userId': Auth.user.userId,
