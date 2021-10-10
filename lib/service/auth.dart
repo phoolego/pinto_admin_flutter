@@ -55,16 +55,19 @@ class Auth {
     }
   }
   static Future<User> getLoginUser() async{
-    if(user.userId!=0){
-      return user;
-    }else{
-      Map<String, String> userData = await _storage.readAll();
-      if(userData['email']!=null && userData['password']!=null){
-        return await login(userData['email'], userData['password']);
+    try{
+      if(user.userId!=0){
+        return user;
       }else{
-        return User.notLogin();
+        Map<String, String> userData = await _storage.readAll();
+        if(userData['email']!=null && userData['password']!=null){
+          return await login(userData['email'], userData['password']);
+        }else{
+          return User.notLogin();
+        }
       }
+    }catch(err){
+      return User.notLogin();
     }
-
   }
 }

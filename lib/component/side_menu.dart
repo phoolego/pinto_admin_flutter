@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 // import 'package:pinto_farmer_flutter/screen/farmer_product_sale_Page.dart';
@@ -10,11 +9,13 @@ class SideMenu extends StatelessWidget {
 String? firstName = '';
 String? lastName = '';
 String? role = '';
+String currentPage='จัดการคลังสินค้า';
 
-SideMenu.withoutAny(){
+SideMenu.defaultMenu(String currentPage){
   this.firstName = Auth.user.firstname;
   this.lastName = Auth.user.lastname;
   this.role = Auth.user.role;
+  this.currentPage = currentPage;
 }
 SideMenu({this.firstName, this.lastName, this.role});
 
@@ -52,17 +53,22 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.home),
               title: Text('จัดการคลังสินค้า',style: kContentTextStyle,),
               onTap: (){
-                Navigator.pushNamed(context, '/stock',);
-                print('จัดการคลังสินค้า');
+                if(currentPage=='จัดการคลังสินค้า'){
+                  Navigator.pop(context);
+                }else{
+                  Navigator.pushReplacementNamed(context, '/stock',);
+                }
               },
             ),
             ListTile(
               leading: Icon(Icons.table_chart),
               title: Text('ตารางรับซื้อ',style: kContentTextStyle,),
               onTap: (){
-                //Navigator.pop it will just close side menu
-                Navigator.pushNamed(context, '/stock/productPriceTable');
-                print('ตารางรับซื้อ');
+                if(currentPage=='ตารางรับซื้อ'){
+                  Navigator.pop(context);
+                }else{
+                  Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
+                }
               },
             ),
             ListTile(
@@ -76,8 +82,12 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.account_circle),
               title: Text('โปรไฟล์ของฉัน',style: kContentTextStyle),
               onTap: (){
-                print('$firstName เข้าสู่หน้าโปรไฟล์ของฉัน',);
-                Navigator.pushNamed(context, '/profile',);
+                if(currentPage=='โปรไฟล์ของฉัน'){
+                  Navigator.pop(context);
+                }else{
+                  Navigator.pushReplacementNamed(context, '/profile',);
+                }
+
               },
             ),
             // ListTile(

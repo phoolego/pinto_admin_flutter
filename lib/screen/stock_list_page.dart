@@ -21,7 +21,7 @@ class _StockListPage extends State<StockListPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: SideMenu.withoutAny(),
+      drawer: SideMenu.defaultMenu('จัดการคลังสินค้า'),
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: Text(

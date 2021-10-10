@@ -4,6 +4,7 @@ import 'package:pinto_admin_flutter/model/stock_preview.dart';
 import 'package:dio/dio.dart';
 import 'package:pinto_admin_flutter/model/stock_product.dart';
 import 'package:pinto_admin_flutter/service/auth.dart';
+import 'package:pinto_admin_flutter/service/thai_sort.dart';
 
 class StockService {
   static Future<List<StockPreview>> getStockPreviews() async {
@@ -15,6 +16,7 @@ class StockService {
         ),
       );
       List<StockPreview> stockPreview = (response.data as List).map((e) => StockPreview(e)).toList();
+      stockPreview.sort((a, b) => ThaiSort.compareTo(a.name, b.name));
       return stockPreview;
     } on DioError catch (err) {
       return err.response!.data['message'];

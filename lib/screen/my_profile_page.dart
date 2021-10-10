@@ -4,16 +4,12 @@ import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/service/auth.dart';
 
 class MyProfilePage extends StatelessWidget {
-  String? firstName = SideMenu.withoutAny().firstName;
-  String? lastName = SideMenu.withoutAny().lastName;
-  String? role = SideMenu.withoutAny().role;
-
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: SideMenu.withoutAny(),
+      drawer: SideMenu.defaultMenu('โปรไฟล์ของฉัน'),
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: Text(

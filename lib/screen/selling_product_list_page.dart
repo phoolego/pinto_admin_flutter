@@ -28,8 +28,7 @@ class sellingProductListPage extends StatefulWidget {
 }
 
 class _sellingProductListPageState extends State<sellingProductListPage> {
-  // double currentStock = 15;
-  // String unit = 'กรัม';
+  String status='ทั้งหมด';
   void reload(){
     setState(() {
       print('reload ssp');
@@ -43,7 +42,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: deepBlue,
-        title: Text(
+        title: const Text(
           'รายการส่งสินค้า',
           style: kAppbarTextStyle,
         ),
@@ -51,7 +50,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: Container(
@@ -65,10 +64,10 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                   children: [
                     Expanded(
                       child: Container(
-                          padding: EdgeInsets.only(left: 40),
+                          padding: const EdgeInsets.only(left: 40),
                           alignment: Alignment.centerLeft,
                           height: 60,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: mediumBlue,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10),
@@ -88,7 +87,13 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                     SizedBox(
                       width: 0.9 * screenWidth,
                       //height: 0.2 * screenHeight,
-                      child: DropDown.sendStockProduct(),
+                      child: DropDown.sendStockProduct(
+                        (String? val){
+                          setState(() {
+                            status=val!;
+                          });
+                        }
+                      ),
                     )
                   ],
                 ),
@@ -110,6 +115,7 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                       return Center(child: Text(snapshot.error.toString()));
                     } else {
                       List<StockProduct> stockProducts = snapshot.data!;
+                      stockProducts = stockProducts.where((e) =>status=='ทั้งหมด'|| e.getStatus()==status).toList();
                       return ListView.builder(
                         itemCount: stockProducts.length,
                         itemBuilder: (context, index) => StatusCard(
