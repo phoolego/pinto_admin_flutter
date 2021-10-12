@@ -65,7 +65,6 @@ class _StockListPage extends State<StockListPage> {
                     onChanged: (val) {
                       setState(() {
                         keyword = val;
-                        print(keyword);
                       });
                     },
                   ),
