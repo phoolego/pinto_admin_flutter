@@ -1,72 +1,72 @@
 import 'package:flutter/material.dart';
 
 const kHeadingTextStyle = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 18.0,
 );
 
 const kContentTextWhiteBold = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 16.0,
   color: deepWhite,
   fontWeight: FontWeight.bold
 );
 const kContentTextWhite = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 16.0,
     color: deepWhite,
 );
 
 const kContentTextMedBlue = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 16.0,
   color: mediumBlue,
 );
 
 const kContentTextMedBlack = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 16.0,
   color: mediumBlack,
 );
 
 const kSubHeadingBoldTextStyle = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 16.0,
   fontWeight: FontWeight.bold
 );
 
 const kHeadingBoldTextStyle = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 18.0,
     fontWeight: FontWeight.bold
 );
 
 const kTextDetailGreyColor = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 14.0,
     color: mediumBlack
 );
 
 const kStatusCompleteTextColor = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 16.0,
     color: successGreen
 );
 
 const kStatusWaringTextColor = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 16.0,
     color: waitingDeepYellow
 );
 
 const kStatusNotCompleteTextColor = TextStyle(
-    fontFamily: 'SansThai',
+    fontFamily: 'Prompt',
     fontSize: 16.0,
     color: notYetDeepRed
 );
 
 const kContentTextStyle = TextStyle(
-  fontFamily: 'SansThai',
+  fontFamily: 'Prompt',
   fontSize: 16.0,
 );
 
