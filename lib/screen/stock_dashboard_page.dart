@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/farmInfoCard.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
+import 'package:pinto_admin_flutter/screen/decrease_stock_page.dart';
 import 'package:pinto_admin_flutter/screen/farm_product_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
@@ -136,7 +138,23 @@ class _StockDashboardPageState extends State<StockDashboardPage> {
                       ),
                     ],
                   ),
-                )
+                ),
+                Center(
+                  child: PintoButton(
+                    width: 200,
+                    label: 'ลดจำนวนสินค้าในคลัง',
+                    buttonColor: deepBlue,
+                    function: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DecreaseStockPage(productName: stock.name,operation: operation,) //
+                          )
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 50,),
               ],
             );
           }

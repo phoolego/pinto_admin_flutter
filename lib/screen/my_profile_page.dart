@@ -25,7 +25,7 @@ class MyProfilePage extends StatelessWidget {
             children: [
               Container(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
@@ -35,7 +35,7 @@ class MyProfilePage extends StatelessWidget {
                       child: Image.asset('assets/images/Icons.jpg'),
                     ),
                     Container(
-                      width: 0.4 * screenWidth,
+                      width: 0.48 * screenWidth,
                       child: Text(
                         '${Auth.user.firstname} \n${Auth.user.lastname} \n${Auth.user.role}',
                         textAlign: TextAlign.left,
