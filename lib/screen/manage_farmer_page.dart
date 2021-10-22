@@ -35,7 +35,13 @@ class _ManageFarmerPageState extends State<ManageFarmerPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  child: Container(
+                  onTap: (){
+                    setState(() {
+                      _isSelect = true;
+                      print(_isSelect);
+                    });
+                  },
+                  child: !_isSelect ? Container(
                     alignment: Alignment.center,
                     width: screenWidth * 0.5,
                     height: screenHeight * 0.08,
@@ -44,10 +50,24 @@ class _ManageFarmerPageState extends State<ManageFarmerPage> {
                       'เกษตรกร',
                       style: kContentTextWhite,
                     ),
+                  ): Container(
+                    alignment: Alignment.center,
+                    width: screenWidth * 0.5,
+                    height: screenHeight * 0.08,
+                    child: Text(
+                      'เกษตรกร',
+                      style: kContentTextMedBlack,
+                    ),
                   ),
                 ),
                 InkWell(
-                  child: Container(
+                  onTap: (){
+                    setState(() {
+                      _isSelect = false;
+                      print(_isSelect);
+                    });
+                  },
+                  child: !_isSelect ? Container(
                     alignment: Alignment.center,
                     width: screenWidth * 0.5,
                     height: screenHeight * 0.08,
@@ -55,9 +75,25 @@ class _ManageFarmerPageState extends State<ManageFarmerPage> {
                       'รอการยืนยัน',
                       style: kContentTextMedBlack,
                     ),
+                  ): Container(
+                    color: lightBlue,
+                    alignment: Alignment.center,
+                    width: screenWidth * 0.5,
+                    height: screenHeight * 0.08,
+                    child: Text(
+                      'รอการยืนยัน',
+                      style: kContentTextWhite,
+                    ),
                   ),
                 ),
               ],
+            ),
+            !_isSelect? Container(
+              child: (Text('รอยืนยัน')),
+            ):Container(
+              child: (
+              Text('เกษตรกร')
+              ),
             )
           ],
         ),
