@@ -79,6 +79,14 @@ SideMenu({this.firstName, this.lastName, this.role});
               },
             ),
             ListTile(
+              leading: Icon(Icons.list_outlined),
+              title: Text('รายชื่อเกษตรกร',style: kContentTextStyle),
+              onTap: (){
+                print('รายชื่อเกษตรกร');
+                Navigator.pushNamed(context, '/manageFarmer');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('โปรไฟล์ของฉัน',style: kContentTextStyle),
               onTap: (){
