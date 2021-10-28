@@ -4,6 +4,7 @@ import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/model/product_type.dart';
 import 'package:pinto_admin_flutter/service/product_service.dart';
+import 'package:pinto_admin_flutter/component/row_in_table.dart';
 
 class ProductPriceTable extends StatefulWidget {
 
@@ -152,9 +153,9 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                           return ListView.builder(
                             itemCount: productTypeList.length,
                             itemBuilder: (context, index) =>
-                              productPriceRow(
+                              row_in_table(
                                 index:index + 1,
-                                productName: productTypeList[index].name,
+                                name: productTypeList[index].name,
                                 buyPrice:productTypeList[index].priceBuy,
                                 sellPrice:productTypeList[index].priceSell,
                                 unit: productTypeList[index].unit
@@ -187,73 +188,4 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
   }
 }
 
-class productPriceRow extends StatelessWidget {
-  int index;
-  String productName;
-  double sellPrice;
-  double buyPrice;
-  String unit;
 
-  productPriceRow(
-      {required this.index,
-      required this.productName,
-      required this.buyPrice,
-      required this.sellPrice,
-      required this.unit});
-
-  @override
-  Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      color: mediumGrayBackground,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                width: 0.15 * screenWidth,
-                child: Text(
-                  '$index',
-                  style: kContentTextMedBlue,textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                width: 0.35 * screenWidth,
-                child: Text(
-                  productName,
-                  style: kContentTextMedBlue,
-                ),
-              ),
-              SizedBox(
-                width: 0.15 * screenWidth,
-                child: Text(
-                  '$buyPrice',
-                  style: kContentTextMedBlue,textAlign: TextAlign.right,
-                ),
-              ),
-              SizedBox(
-                width: 0.15 * screenWidth,
-                child: Text(
-                  '$sellPrice',
-                  style: kContentTextMedBlue,textAlign: TextAlign.right,
-                ),
-              ),
-              SizedBox(
-                width: 0.2 * screenWidth,
-                child: Text(
-                  unit,
-                  style: kContentTextMedBlue,textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenHeight *0.01,)
-        ],
-      ),
-    );
-  }
-
-}
