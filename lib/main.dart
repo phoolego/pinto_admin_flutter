@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinto_admin_flutter/screen/admin_add_product.dart';
 import 'package:pinto_admin_flutter/screen/auth/auth_controller.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
 import 'package:pinto_admin_flutter/screen/stock_list_page.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         // '/stock/stockDashboard/farmDetail/SellingList/statusWithFarmer' : (context) => SellingProductStatusPage(),
         '/stock/productPriceTable' : (context) => ProductPriceTable(),
         '/manageFarmer' : (context) => ManageFarmerPage(),
+        '/stock/productPriceTable/addProduct' : (context) => AdminAddProductPage(),
       },
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

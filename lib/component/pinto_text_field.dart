@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 
+// ignore: must_be_immutable
 class PintoTextFieldWithoutHintText extends StatelessWidget {
   String label = '';
   var validator;

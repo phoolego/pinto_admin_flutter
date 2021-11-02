@@ -18,16 +18,6 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    // return RawKeyboardListener(
-    //   autofocus: true,
-    //   focusNode: FocusNode(),
-    //   onKey: (event){
-    //     if(event.isKeyPressed(LogicalKeyboardKey.backspace)){
-    //      setState(() {
-    //        print('Press enter');
-    //      });
-    //     }
-    //   },
     return Scaffold(
       drawer: SideMenu.defaultMenu('ตารางรับซื้อ'),
       appBar: AppBar(
@@ -94,7 +84,7 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
                   child: PintoButton(
                     label: '+ เพิ่ม',
                     function: () {
-                      print('เพิ่มหน่ะ');
+                     Navigator.pushNamed(context, '/stock/productPriceTable/addProduct');
                     },
                     buttonColor: mediumGrayBackground,
                     textStyle: blackSmallNormalTextStyle,
