@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
-import 'package:pinto_admin_flutter/screen/stock_dashboard_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 class DecreaseStockPage extends StatefulWidget {
