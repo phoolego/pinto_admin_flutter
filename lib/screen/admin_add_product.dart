@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pinto_admin_flutter/component/%E0%B9%8Cpinto_numeric_text_field.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/component/pinto_text_field.dart';
-import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 
 class AdminAddProductPage extends StatefulWidget {
@@ -26,25 +26,25 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: screenHeight*0.05,),
+              SizedBox(
+                height: screenHeight * 0.05,
+              ),
               PintoTextFieldWithoutHintText(label: 'ชื่อผลิตภัณฑ์ (ภาษาไทย)'),
               PintoTextFieldWithoutHintText(
                   label: 'ชื่อผลิตภัณฑ์ (ภาษาอังกฤษ)'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                      child: PintoTextFieldWithoutHintText(
-                    label: 'ราคาซื้อ',
-                  )),
-                  Flexible(
-                      child: PintoTextFieldWithoutHintText(
-                    label: 'ราคาขาย',
-                  )),
-                ],
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    NumericWithDotTextField(label: 'ราคาขาย'),
+                    NumericWithDotTextField(label: 'ราคาซื้อ')
+                  ],
+                ),
               ),
               PintoTextFieldWithoutHintText(label: 'หน่วยที่ขาย'),
-              SizedBox(height: screenHeight*0.025,),
+              SizedBox(
+                height: screenHeight * 0.025,
+              ),
               PintoButton(
                 label: '+ เพิ่มรูปภาพ',
                 function: () {
@@ -54,7 +54,9 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
                 textStyle: blackSmallNormalTextStyle,
                 width: screenWidth * 0.25,
               ),
-              SizedBox(height: screenHeight*0.03,),
+              SizedBox(
+                height: screenHeight * 0.03,
+              ),
               PintoButton(
                 label: 'เพิ่มผลิตภัณฑ์',
                 function: () {
@@ -69,3 +71,5 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
     );
   }
 }
+
+

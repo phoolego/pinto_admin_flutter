@@ -35,8 +35,6 @@ class PintoTextFieldWithoutHintText extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: TextFormField(
               decoration: const InputDecoration(
-                // hasFloatingPlaceholder: true,
-                // hintText: 'gdsagasdg',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
