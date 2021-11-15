@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
-import 'package:pinto_admin_flutter/component/row_in_table.dart';
+import 'package:pinto_admin_flutter/component/row_price_table.dart';
 
 class ManageFarmerPage extends StatefulWidget {
   @override

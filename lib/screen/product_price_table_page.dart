@@ -5,7 +5,7 @@ import 'package:pinto_admin_flutter/component/side_menu.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/model/product_type.dart';
 import 'package:pinto_admin_flutter/service/product_service.dart';
-import 'package:pinto_admin_flutter/component/row_in_table.dart';
+import 'package:pinto_admin_flutter/component/row_price_table.dart';
 
 class ProductPriceTable extends StatefulWidget {
   @override
@@ -153,24 +153,21 @@ class _ProductPriceTableState extends State<ProductPriceTable> {
               Expanded(
                 child: FutureBuilder<List<ProductType>>(
                   future: ProductService.getAllProductType(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<ProductType>> snapshot) {
+                  builder: (BuildContext context, AsyncSnapshot<List<ProductType>> snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
                     } else {
                       //List<ProductType> productTypeList = snapshot.data!;
-                      List<ProductType> productTypeList =
-                          searchOperation(keyword, snapshot.data!);
+                      List<ProductType> productTypeList = searchOperation(keyword, snapshot.data!);
                       return ListView.builder(
-                          itemCount: productTypeList.length,
-                          itemBuilder: (context, index) => row_in_table(
-                              index: index + 1,
-                              name: productTypeList[index].name,
-                              buyPrice: productTypeList[index].priceBuy,
-                              sellPrice: productTypeList[index].priceSell,
-                              unit: productTypeList[index].unit));
+                        itemCount: productTypeList.length,
+                        itemBuilder: (context, index) => RowPriceTable(
+                          index: index + 1,
+                          product: productTypeList[index],
+                        )
+                      );
                     }
                   },
                 ),
