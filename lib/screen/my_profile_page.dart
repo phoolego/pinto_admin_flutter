@@ -22,11 +22,12 @@ class MyProfilePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(0.1 * screenWidth, 0.02 * screenHeight, 0.1 * screenWidth, 0.02 * screenHeight),
           // decoration: BoxDecoration(color: deepWhite),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 10),
@@ -34,8 +35,8 @@ class MyProfilePage extends StatelessWidget {
                       height: 90,
                       child: Image.asset('assets/images/Icons.jpg'),
                     ),
-                    Container(
-                      width: 0.48 * screenWidth,
+                    Expanded(
+                      // width: 0.48 * screenWidth,
                       child: Text(
                         '${Auth.user.firstname} \n${Auth.user.lastname} \n${Auth.user.role}',
                         textAlign: TextAlign.left,
@@ -44,8 +45,7 @@ class MyProfilePage extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        print('${Auth.user.firstname} เข้าสู่หน้าแก้ไขโปรไฟล์ของฉัน');
-                        Navigator.defaultRouteName;
+                        Navigator.pushNamed(context, '/profile/edit');
                         //TODO:My edit profile page
                       },
                       icon: Icon(Icons.edit),),
@@ -56,6 +56,16 @@ class MyProfilePage extends StatelessWidget {
                 height: 20,
                 thickness: 1,
                 color: Colors.black26,
+              ),
+              Text(
+                'เบอร์โทรติดต่อ: ${Auth.user.contact}',
+                textAlign: TextAlign.left,
+                style: kNormalTextStyle,
+              ),
+              Text(
+                'ที่อยู่: ${Auth.user.address}',
+                textAlign: TextAlign.left,
+                style: kNormalTextStyle,
               ),
             ],
           ),

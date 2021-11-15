@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/screen/admin_add_product.dart';
 import 'package:pinto_admin_flutter/screen/auth/auth_controller.dart';
 import 'package:pinto_admin_flutter/screen/auth/login.dart';
+import 'package:pinto_admin_flutter/screen/my_profile_edit_page.dart';
 import 'package:pinto_admin_flutter/screen/stock_list_page.dart';
 import 'package:pinto_admin_flutter/screen/my_profile_page.dart';
 import 'package:pinto_admin_flutter/screen/product_price_table_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const Login(),
         '/stock': (context) =>  StockListPage(),
         '/profile': (context) => MyProfilePage(),
+        '/profile/edit': (context) => MyProfileEditPage(),
         //'/stock/stockDashboard': (context) => StockDashboard(),
         //TODO-- FarmDetail,FarmSellingList page map route na nong Mine
         // '/stock/stockDashboard/farmDetail/' : (context) => FarmProductPage(),

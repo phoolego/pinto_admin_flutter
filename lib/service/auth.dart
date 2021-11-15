@@ -37,16 +37,15 @@ class Auth {
     await _storage.delete(key: 'email');
     await _storage.delete(key: 'password');
   }
-  static Future<int> register(String username,String email,String password,String address,String contact) async {
+  static Future<int> updateUser(String firstname, String lastname, String address, String contact) async {
     try {
-      var response = await Api.dio.post('/insert-user',
+      var response = await Api.dio.put('/update-user',
         data:{
-          'username':username,
-          'email':email,
-          'password':password,
+          'firstname':firstname,
+          'lastname':lastname,
           'address':address,
           'contact':contact,
-          'role':'ADMIN'
+          'userId': user.userId
         }
       );
       return response.data['insertId'];

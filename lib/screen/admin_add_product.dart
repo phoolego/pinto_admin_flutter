@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pinto_admin_flutter/component/%E0%B9%8Cpinto_numeric_text_field.dart';
+import 'package:pinto_admin_flutter/component/pinto_numeric_text_field.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/component/pinto_text_field.dart';
 import 'package:pinto_admin_flutter/constant.dart';
