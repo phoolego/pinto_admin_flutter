@@ -8,7 +8,10 @@ import 'package:pinto_admin_flutter/service/stock_service.dart';
 class DecreaseStockPage extends StatefulWidget {
   String productName = '';
   Map operation;
-  DecreaseStockPage({required this.productName,required this.operation,});
+  DecreaseStockPage({
+    required this.productName,
+    required this.operation,
+  });
   @override
   _DecreaseStockPageState createState() => _DecreaseStockPageState();
 }
@@ -19,8 +22,9 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
       print('reload root');
     });
   }
+
   final _formKey = GlobalKey<FormState>();
-  String _errorMessage ='';
+  String _errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +61,9 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: mediumBlue,
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -86,7 +92,8 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                       child: Column(
                         children: [
                           Container(
-                              padding: EdgeInsets.only(left: 30, top: 20, right: 30),
+                              padding:
+                                  EdgeInsets.only(left: 30, top: 20, right: 30),
                               child: Row(
                                 children: [
                                   Text(
@@ -101,7 +108,8 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                                 ],
                               )),
                           Container(
-                            padding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+                            padding: EdgeInsets.only(
+                                left: 30, right: 30, bottom: 20),
                             child: Row(
                               children: [
                                 Text(
@@ -121,24 +129,28 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text('ปริมาณที่ต้องการลด', style: kNormalTextStyle),
+                                const Text('ปริมาณที่ต้องการลด',
+                                    style: kNormalTextStyle),
                                 TextFormField(
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'กรุณากรอกปริมาณที่ต้องการลด';
-                                    } else if (num.tryParse(value) == null || double.parse(value) <= 0) {
+                                    } else if (num.tryParse(value) == null ||
+                                        double.parse(value) <= 0) {
                                       return 'กรุณากรอกตัวเลขที่ถูกต้อง';
                                     } else {
                                       return null;
                                     }
                                   },
                                   onChanged: (value) {
-                                    if (num.tryParse(value) != null && double.parse(value) > 0) {
+                                    if (num.tryParse(value) != null &&
+                                        double.parse(value) > 0) {
                                       _decreseAmount = double.parse(value);
                                     }
                                   },
@@ -156,7 +168,8 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -179,24 +192,54 @@ class _DecreaseStockPageState extends State<DecreaseStockPage> {
                 ),
                 Center(
                   child: PintoButton(
-                    width: 200,
-                    label: 'ยืนยันการลดจำนวน',
-                    buttonColor: deepBlue,function: () async{
-                    if(_formKey.currentState!.validate()){
-                      setState(() {
-                        _errorMessage = '';
-                      });
-                      try{
-                        widget.operation['root']();
-                        Navigator.pop(context);
-                      }catch(err){
-                        setState(() {
-                          _errorMessage = err.toString();
-                        });
-                      }
-                    }
-                  }
-                  ),
+                      width: 200,
+                      label: 'ยืนยันการลดจำนวน',
+                      buttonColor: deepBlue,
+                      function: () async {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            _errorMessage = '';
+                          });
+                          try {
+                            // widget.operation['root']();
+                            // Navigator.pop(context)
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('คำเตือน',
+                                    style: kHeadingTextStyle),
+                                content: const Text(
+                                    'กด "ตกลง" เพื่อทำรายการต่อ',
+                                    style: kContentTextStyle),
+                                actions: <Widget>[
+                                  TextButton(
+                                      child: const Text(
+                                        'ยกเลิก',
+                                        style: kContentTextStyle,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      }),
+                                  TextButton(
+                                    child: const Text(
+                                      'ตกลง',
+                                      style: kContentTextStyle,
+                                    ),
+                                    onPressed: () {
+                                      widget.operation['root']();
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              ),
+                            );
+                          } catch (err) {
+                            setState(() {
+                              _errorMessage = err.toString();
+                            });
+                          }
+                        }
+                      }),
                 ),
                 SizedBox(
                   height: 50,

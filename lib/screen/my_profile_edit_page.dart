@@ -174,10 +174,42 @@ class _MyProfileEditPageState extends State<MyProfileEditPage> {
                           function: () async{
                             if (_formKey.currentState!.validate()) {
                               try{
-                                await Auth.updateUser(firstname, lastname, address, contact);
-                                Navigator.pop(context);
-                                Navigator.pushReplacementNamed(context, '/profile');
-                              }catch(err){
+                                // await Auth.updateUser(firstname, lastname, address, contact);
+                                // Navigator.pop(context);
+                                // Navigator.pushReplacementNamed(context, '/profile');
+                                showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                          title: const Text('คำเตือน',
+                                              style: kHeadingTextStyle),
+                                          content: const Text(
+                                              'กด "ตกลง" เพื่อยืนยันการแก้ไข',
+                                              style: kContentTextStyle),
+                                          actions: <Widget>[
+                                            TextButton(
+                                                child: const Text(
+                                                  'ยกเลิก',
+                                                  style: kContentTextStyle,
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                }),
+                                            TextButton(
+                                              child: const Text(
+                                                'ตกลง',
+                                                style: kContentTextStyle,
+                                              ),
+                                              onPressed: () async {
+                                                await Auth.updateUser(firstname, lastname, address, contact);
+                                                Navigator.pop(context);
+                                                Navigator.pushReplacementNamed(context, '/profile');
+                                              },
+                                            )
+                                          ],
+                                        ),);
+
+                                    }catch(err){
                                 setState(() {
                                   _errorMessage = err.toString();
                                 });
