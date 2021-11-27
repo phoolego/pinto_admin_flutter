@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/side_menu.dart';
-import 'package:pinto_admin_flutter/component/productListCard.dart';
+import 'package:pinto_admin_flutter/component/stock_card.dart';
 import 'package:pinto_admin_flutter/model/stock_preview.dart';
 import 'package:pinto_admin_flutter/screen/stock_dashboard_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
@@ -24,18 +24,18 @@ class _StockListPage extends State<StockListPage> {
       drawer: SideMenu.defaultMenu('จัดการคลังสินค้า'),
       appBar: AppBar(
         backgroundColor: deepBlue,
-        title: Text(
+        title: const Text(
           'คลังสินค้า',
           style: kAppbarTextStyle,
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'สวัสดี,\nแอดมิน ${firstName}',
+              'สวัสดี,\nแอดมิน $firstName',
               style: kHeadingTextStyle,
             ),
             Expanded(
@@ -68,7 +68,7 @@ class _StockListPage extends State<StockListPage> {
                       });
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Expanded(
@@ -86,22 +86,18 @@ class _StockListPage extends State<StockListPage> {
                           return ListView.builder(
                             itemCount: listStockPreview.length,
                             itemBuilder: (context, index) =>
-                                ProductCard.withoutProductID(
-                                    productName: listStockPreview[index].name,
-                                    inStock: listStockPreview[index]
-                                            .sellingAmount +
-                                        listStockPreview[index].preorderAmount,
-                                    unit: listStockPreview[index].unit,
+                                StockCard(
+                                    stockPreview: listStockPreview[index],
                                     function: () {
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  StockDashboardPage(
-                                                      productName:
-                                                          listStockPreview[
-                                                                  index]
-                                                              .name)));
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                            StockDashboardPage(
+                                              productName: listStockPreview[index].name
+                                            )
+                                        )
+                                      );
                                     }),
                           );
                         }
