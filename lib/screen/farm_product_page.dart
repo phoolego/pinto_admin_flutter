@@ -34,14 +34,14 @@ class _FarmProductPageState extends State<FarmProductPage> {
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: Text(
-          '${widget.productType}',
+          widget.productType,
           style: kAppbarTextStyle,
         ),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
       body: SafeArea(
@@ -55,22 +55,21 @@ class _FarmProductPageState extends State<FarmProductPage> {
               } else {
                 FarmProduct farmProduct = snapshot.data!;
                 return Container(
-                  decoration: BoxDecoration(color: deepGrayBackground),
+                  decoration: const BoxDecoration(color: deepGrayBackground),
                   child: Stack(
                     alignment: Alignment.topCenter,
                     fit: StackFit.expand,
                     children: [
                       Positioned(
                         top: 0,
-                        child: Container(
+                        child: SizedBox(
                           height: 0.35 * screenHeight,
-                          constraints: BoxConstraints(
-                            minWidth: screenWidth,
-                          ),
-                          alignment: AlignmentDirectional.topCenter,
-                          child: Image.asset(
-                            'assets/images/Icons.jpg',
-                          ),
+                          width: screenWidth,
+                          child: farmProduct.productPic!=null?Image.network(
+                            farmProduct.productPic!,
+                            fit: BoxFit.cover,
+                          ):
+                          const Center(child: Text('ยังไม่มีรูปภาพการปลูก'),),
                         ),
                       ),
                       Positioned(

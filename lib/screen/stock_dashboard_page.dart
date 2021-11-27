@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/constant.dart';
-import 'package:pinto_admin_flutter/component/farmInfoCard.dart';
+import 'package:pinto_admin_flutter/component/farm_info_card.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
 import 'package:pinto_admin_flutter/screen/decrease_stock_page.dart';
 import 'package:pinto_admin_flutter/screen/farm_product_page.dart';

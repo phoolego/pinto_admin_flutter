@@ -15,6 +15,7 @@ class FarmProduct{
   double currentStock = 0;
   String firstname = '';
   String lastname = '';
+  String? productPic;
 
   FarmProduct(Map<String,dynamic> jsonProduct){
     // productId = jsonProduct['product_id'];
@@ -31,6 +32,7 @@ class FarmProduct{
     currentStock = jsonProduct['current_stock']==null?0:jsonProduct['current_stock']+0.0;
     firstname = jsonProduct['firstname'];
     lastname = jsonProduct['lastname'];
+    productPic = jsonProduct['product_pic'];
   }
 
   double getUsedAmount(){
