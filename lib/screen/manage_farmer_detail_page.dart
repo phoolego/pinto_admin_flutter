@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/model/farmer.dart';
+import 'package:pinto_admin_flutter/service/farmer_service.dart';
 
 class ManageFarmerDetailtPage extends StatelessWidget {
   Farmer farmer;
@@ -85,7 +86,38 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                 PintoButton(
                   label: 'ให้สิทธิ์เกษตกร',
                   function: (){
-                    
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                        AlertDialog(
+                          title: const Text('คำเตือน',
+                              style: kHeadingTextStyle),
+                          content: const Text(
+                              'กด "ตกลง" เพื่อยืนยันให้สิทธิ์เกษตกร',
+                              style: kContentTextStyle),
+                          actions: <Widget>[
+                            TextButton(
+                                child: const Text(
+                                  'ยกเลิก',
+                                  style: kContentTextStyle,
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                            TextButton(
+                              child: const Text(
+                                'ตกลง',
+                                style: kContentTextStyle,
+                              ),
+                              onPressed: () async {
+                                await FarmerService.approveFarmer(farmer.userId);
+                                Navigator.pop(context);
+                                Navigator.pushReplacementNamed(context, '/profile');
+                              },
+                            )
+                          ],
+                        ),
+                    );
                   },
                 ):
                 const SizedBox(),
