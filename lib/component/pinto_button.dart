@@ -5,7 +5,7 @@ class PintoButton extends StatelessWidget {
   double width;
   String label = '';
   var function;
-  Color buttonColor = Colors.amber;
+  Color buttonColor = deepBlue;
   TextStyle textStyle=whiteSmallNormalTextStyle;
 
 
@@ -13,7 +13,7 @@ class PintoButton extends StatelessWidget {
       {this.width=200,
       required this.label,
       required this.function,
-      required this.buttonColor,
+      this.buttonColor=deepBlue,
       this.textStyle=whiteSmallNormalTextStyle});
 
   @override

@@ -82,8 +82,11 @@ SideMenu({this.firstName, this.lastName, this.role});
               leading: Icon(Icons.list_outlined),
               title: Text('รายชื่อเกษตรกร',style: kContentTextStyle),
               onTap: (){
-                print('รายชื่อเกษตรกร');
-                Navigator.pushNamed(context, '/manageFarmer');
+                if(currentPage=='รายชื่อเกษตรกร'){
+                  Navigator.pop(context);
+                }else{
+                  Navigator.pushNamed(context, '/manageFarmer');
+                }
               },
             ),
             ListTile(
@@ -95,7 +98,6 @@ SideMenu({this.firstName, this.lastName, this.role});
                 }else{
                   Navigator.pushReplacementNamed(context, '/profile',);
                 }
-
               },
             ),
             // ListTile(
