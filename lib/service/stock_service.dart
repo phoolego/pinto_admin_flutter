@@ -99,4 +99,27 @@ class StockService {
       throw err.toString();
     }
   }
+  static Future<void> disposeStock(String productType, double amount, String reason) async {
+    try {
+      await Api.dio.put('/stock/dispose',
+        options: Options(
+          headers: {
+            'userId': Auth.user.userId,
+          },
+        ),
+        data: {
+          'productType': productType,
+          'disposedAmount': amount,
+          'disposedReason': reason
+        },
+      );
+    } on DioError catch (err) {
+      if(err.response!.data['message']=='This strock cannot be disposed'){
+        throw 'กรุณากรอกปริมาณที่ต้องการลด ไม่ถูกต้อง';
+      }
+      throw err.response!.data['message'];
+    } catch (err) {
+      throw err.toString();
+    }
+  }
 }

@@ -37,7 +37,7 @@ class Auth {
     await _storage.delete(key: 'email');
     await _storage.delete(key: 'password');
   }
-  static Future<int> updateUser(String firstname, String lastname, String address, String contact) async {
+  static Future<void> updateUser(String firstname, String lastname, String address, String contact) async {
     try {
       var response = await Api.dio.put('/update-user',
         data:{
@@ -48,7 +48,7 @@ class Auth {
           'userId': user.userId
         }
       );
-      return response.data['insertId'];
+      user = User(response.data);
     } on DioError catch (err) {
       throw err.response!.data['message'];
     }

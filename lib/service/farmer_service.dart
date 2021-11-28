@@ -46,9 +46,9 @@ class FarmerService{
     }
   }
 
-  static Future<void> approveFarmer(farmerId) async{
+  static Future<void> approveFarmer(int farmerId) async{
     try {
-      await Api.dio.put('/all-farmer-request',
+      await Api.dio.put('/approve-farmer',
         options: Options(
           headers: {
             'userId':Auth.user.userId

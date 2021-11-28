@@ -9,13 +9,13 @@ import 'package:pinto_admin_flutter/screen/selling_product_status_page.dart';
 import 'package:pinto_admin_flutter/service/stock_service.dart';
 
 // ignore: must_be_immutable
-class sellingProductListPage extends StatefulWidget {
+class SellingProductListPage extends StatefulWidget {
   String farmName;
   int productId;
   double productAmount;
   FarmProduct farmProduct;
   Map operation;
-  sellingProductListPage({
+  SellingProductListPage({
     required this.farmName,
     required this.productId,
     required this.productAmount,
@@ -24,19 +24,19 @@ class sellingProductListPage extends StatefulWidget {
   });
 
   @override
-  _sellingProductListPageState createState() => _sellingProductListPageState();
+  _SellingProductListPageState createState() => _SellingProductListPageState();
 }
 
-class _sellingProductListPageState extends State<sellingProductListPage> {
+class _SellingProductListPageState extends State<SellingProductListPage> {
   String status='ทั้งหมด';
   void reload(){
     setState(() {
-      print('reload ssp');
+      print('reload SellingProductListPage');
     });
   }
   @override
   Widget build(BuildContext context) {
-    widget.operation['sspList']=reload;
+    widget.operation['SellingProductListPage']=reload;
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -137,35 +137,6 @@ class _sellingProductListPageState extends State<sellingProductListPage> {
                 ),
               ),
             ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(horizontal: screenWidth*0.05,vertical: 20),
-            //   width: screenWidth,
-            //   color: Colors.deepOrange,
-            //   // child: Column(
-            //   //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   //   children: [
-            //   //     Text('ปริมาณที่ขายได้ทั้งหมด ${widget.product.getusedAmount()} ${widget.product.unit} ${
-            //   //         widget.product.status=='PLANTING'?'จากการคาดการ':'จากการเก็บเกี่ยว'}',style: kNormalTextStyle,),
-            //   //     FutureBuilder<List<StockProduct>>(
-            //   //       future: ProductService.getStockProduct(widget.product.productId),
-            //   //       builder: (BuildContext context, AsyncSnapshot<List<StockProduct>> snapshot) {
-            //   //         if(!snapshot.hasData){
-            //   //           return Text('ปริมาณที่ส่งขาย 0 ${widget.product.unit}',style: kNormalTextStyle,);
-            //   //         }else if(snapshot.hasError){
-            //   //           return Text('ปริมาณที่ส่งขาย - ${widget.product.unit}',style: kNormalTextStyle,);
-            //   //         }else{
-            //   //           List<StockProduct> stockProducts = snapshot.data!;
-            //   //           double totalSell = 0;
-            //   //           for(StockProduct p in stockProducts){
-            //   //             totalSell+= p.sspAmount;
-            //   //           }
-            //   //           return Text('ปริมาณที่ส่งขาย $totalSell ${widget.product.unit}',style: kNormalTextStyle);
-            //   //         }
-            //   //       },
-            //   //     ),
-            //   //   ],
-            //   // ),
-            // )
           ],
         ),
       ),

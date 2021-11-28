@@ -45,9 +45,9 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
         });
         try{
           await StockService.receiveStockProduct(widget.stockProduct.sspId);
-          widget.operation['root']();
-          widget.operation['sspList']();
-          widget.operation['farmProduct']();
+          widget.operation['StockDashboardPage']();
+          widget.operation['FarmProductPage']();
+          widget.operation['SellingProductListPage']();
           Navigator.pop(context);
         }catch(err){
           setState((){
@@ -62,9 +62,9 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
         });
         try{
           await StockService.payStockProduct(widget.stockProduct.sspId);
-          widget.operation['root']();
-          widget.operation['sspList']();
-          widget.operation['farmProduct']();
+          widget.operation['StockDashboardPage']();
+          widget.operation['FarmProductPage']();
+          widget.operation['SellingProductListPage']();
           Navigator.pop(context);
         }catch(err){
           setState((){

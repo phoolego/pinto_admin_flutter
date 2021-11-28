@@ -21,12 +21,12 @@ class FarmProductPage extends StatefulWidget {
 class _FarmProductPageState extends State<FarmProductPage> {
   void reload(){
     setState(() {
-      print('reload farmProduct');
+      print('reload FarmProductPage');
     });
   }
   @override
   Widget build(BuildContext context) {
-    widget.operation['farmProduct'] = reload;
+    widget.operation['FarmProductPage'] = reload;
     //size
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -259,7 +259,7 @@ class _FarmProductPageState extends State<FarmProductPage> {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                          builder: (context) => sellingProductListPage(
+                                                          builder: (context) => SellingProductListPage(
                                                             farmName: widget.productType,
                                                             productId: widget.stockFarm.productId,
                                                             productAmount: widget.stockFarm.amount,

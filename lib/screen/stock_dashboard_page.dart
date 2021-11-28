@@ -18,13 +18,13 @@ class StockDashboardPage extends StatefulWidget {
 class _StockDashboardPageState extends State<StockDashboardPage> {
   void reload(){
     setState(() {
-      print('reload root');
+      print('reload StockDashboardPage');
     });
   }
   @override
   Widget build(BuildContext context) {
     Map operation = {
-      'root':reload
+      'StockDashboardPage':reload
     };
     return Scaffold(
       appBar: AppBar(

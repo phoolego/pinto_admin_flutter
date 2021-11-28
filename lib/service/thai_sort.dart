@@ -12,7 +12,7 @@ class ThaiSort{
         continue;
       }
       if((a.codeUnitAt(i)>=3648 && a.codeUnitAt(i)<=3652) || (b.codeUnitAt(i)>=3648 && b.codeUnitAt(i)<=3652)){
-        print("Code unit for ${a[i]} is ${a.codeUnitAt(i)} and Code unit for ${b[i]} is ${b.codeUnitAt(i)}");
+        // print("Code unit for ${a[i]} is ${a.codeUnitAt(i)} and Code unit for ${b[i]} is ${b.codeUnitAt(i)}");
         int aPos = i;
         int bPos = i;
         if(a.codeUnitAt(i)>=3648 && a.codeUnitAt(i)<=3652) {
