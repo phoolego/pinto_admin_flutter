@@ -127,6 +127,8 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                       });
                       try{
                         await StockService.payStockProduct(widget.stockProduct.sspId,pic);
+                        imageCache!.clear();
+                        imageCache!.clearLiveImages();
                         widget.operation['StockDashboardPage']();
                         widget.operation['FarmProductPage']();
                         widget.operation['SellingProductListPage']();
@@ -355,7 +357,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: FileImage(pic!),
                       ),
                     ),
@@ -366,7 +368,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: NetworkImage(widget.stockProduct.tranPic!),
                       ),
                     ),
