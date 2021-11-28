@@ -22,3 +22,20 @@ to make application connect to backend service go to
 ./lib/api/api.dart
 ```
 then, set the value of baseUrl to your current url of backend service
+
+## Build app apk for android
+- Create an upload keystore follow this [doc](https://docs.flutter.dev/deployment/android#create-an-upload-keystore)
+
+- then store your keystore in private directory
+
+- Edit key.properties file follow this [doc](https://docs.flutter.dev/deployment/android#reference-the-keystore-from-the-app)
+
+- run command
+```
+flutter build apk
+```
+
+- apk file should store in directory
+```
+build\app\outputs\flutter-apk\app-release.apk
+```
