@@ -294,6 +294,8 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
                               onPressed: () async {
                                 try{
                                   await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
+                                  imageCache!.clear();
+                                  imageCache!.clearLiveImages();
                                   Navigator.pop(context);
                                   Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
                                 }catch(err){

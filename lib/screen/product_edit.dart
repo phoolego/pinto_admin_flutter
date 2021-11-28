@@ -288,6 +288,8 @@ class _AdminEditProductPageState extends State<AdminEditProductPage> {
                     try{
                       await ProductService.editProductType(widget.product.name,name, nameEng, priceBuy, priceSell, unitAmount, pic);
                       Navigator.pop(context);
+                      imageCache!.clear();
+                      imageCache!.clearLiveImages();
                       Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
                     }catch(err){
                       setState(() {
