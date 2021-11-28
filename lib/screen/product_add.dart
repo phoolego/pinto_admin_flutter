@@ -265,46 +265,47 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
                 label: 'เพิ่มผลิตภัณฑ์(test)',
                 function: () async{
                   if (_formKey.currentState!.validate()) {
-                    try{
-                      // await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
-                      // Navigator.pop(context);
-                      // Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
-                      showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              AlertDialog(
-                                title: const Text('คำเตือน',
-                                    style: kHeadingTextStyle),
-                                content: const Text(
-                                    'กด "ตกลง" เพื่อทำรายการต่อ',
-                                    style: kContentTextStyle),
-                                actions: <Widget>[
-                                  TextButton(
-                                      child: const Text(
-                                        'ยกเลิก',
-                                        style: kContentTextStyle,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      }),
-                                  TextButton(
-                                    child: const Text(
-                                      'ตกลง',
-                                      style: kContentTextStyle,
-                                    ),
-                                    onPressed: () async {
-                                      await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
-                                      Navigator.pop(context);
-                                      Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
-                                    },
-                                  )
-                                ],
-                              ),);
-                          }catch(err){
-                      setState(() {
-                        _errorMessage = err.toString();
-                      });
-                    }
+                    // await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
+                    // Navigator.pop(context);
+                    // Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                        AlertDialog(
+                          title: const Text('คำเตือน',
+                            style: kHeadingTextStyle),
+                          content: const Text(
+                            'กด "ตกลง" เพื่อทำรายการต่อ',
+                            style: kContentTextStyle),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text(
+                                'ยกเลิก',
+                                style: kContentTextStyle,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              }),
+                            TextButton(
+                              child: const Text(
+                                'ตกลง',
+                                style: kContentTextStyle,
+                              ),
+                              onPressed: () async {
+                                try{
+                                  await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacementNamed(context, '/stock/productPriceTable');
+                                }catch(err){
+                                  setState(() {
+                                    _errorMessage = err.toString();
+                                  });
+                                }
+                              },
+                            )
+                          ],
+                        ),
+                    );
                   }
                 },
                 buttonColor: deepBlue,

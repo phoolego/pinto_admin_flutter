@@ -20,9 +20,9 @@ class FarmProduct{
   FarmProduct(Map<String,dynamic> jsonProduct){
     // productId = jsonProduct['product_id'];
     area = jsonProduct['area']+0.0;
-    plantDate = DateTime.parse(jsonProduct['plant_date']);
-    predictHarvestDate = DateTime.parse(jsonProduct['predict_harvest_date']);
-    harvestDate = jsonProduct['harvest_date']==null?null:DateTime.parse(jsonProduct['harvest_date']);
+    plantDate = DateTime.parse(jsonProduct['plant_date']).toLocal();
+    predictHarvestDate = DateTime.parse(jsonProduct['predict_harvest_date']).toLocal();
+    harvestDate = jsonProduct['harvest_date']==null?null:DateTime.parse(jsonProduct['harvest_date']).toLocal();
     harvestAmount = jsonProduct['harvest_amount']==null?null:jsonProduct['harvest_amount']+0.0;
     predictAmount = jsonProduct['predict_amount']+0.0;
     typeOfProduct = jsonProduct['type_of_product'];

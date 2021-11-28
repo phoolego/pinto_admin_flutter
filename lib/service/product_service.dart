@@ -50,7 +50,7 @@ class ProductService{
   }
   static Future<void> addProductType(String name, String nameEng, double priceBuy, double priceSell, String unit,File? img) async{
     try {
-      var response = await Api.dio.post('/product-type/insert',
+      await Api.dio.post('/product-type/insert',
         options: Options(
           headers: {
             'userId':Auth.user.userId

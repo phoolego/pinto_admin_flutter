@@ -110,9 +110,13 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                                 style: kContentTextStyle,
                               ),
                               onPressed: () async {
-                                await FarmerService.approveFarmer(farmer.userId);
-                                Navigator.pop(context);
-                                Navigator.pushReplacementNamed(context, '/manageFarmer');
+                                try{
+                                  await FarmerService.approveFarmer(farmer.userId);
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacementNamed(context, '/manageFarmer');
+                                }catch(err){
+                                  Navigator.pop(context);
+                                }
                               },
                             )
                           ],

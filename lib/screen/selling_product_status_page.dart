@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pinto_admin_flutter/constant.dart';
 import 'package:pinto_admin_flutter/component/pinto_button.dart';
 import 'package:pinto_admin_flutter/model/farm_product.dart';
@@ -32,7 +35,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
     if(widget.stockProduct.sspStatus=='PREPARE'){
       return 'ได้รับผลิตภัณฑ์แล้ว';
     }else if(widget.stockProduct.sspStatus=='DELIVERED'){
-      return 'เพิ่มหลักฐานการชำระเงิน';
+      return 'ยืนยันการชำระเงิน';
     }else{
       return '';
     }
@@ -40,43 +43,126 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
   buttonFunc(BuildContext context){
     if(widget.stockProduct.sspStatus=='PREPARE'){
       return ()async{
-        setState((){
-          _errorMessage = '';
-        });
-        try{
-          await StockService.receiveStockProduct(widget.stockProduct.sspId);
-          widget.operation['StockDashboardPage']();
-          widget.operation['FarmProductPage']();
-          widget.operation['SellingProductListPage']();
-          Navigator.pop(context);
-        }catch(err){
-          setState((){
-            _errorMessage = err.toString();
-          });
-        }
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) =>
+            AlertDialog(
+              title: const Text('คำเตือน',
+                style: kHeadingTextStyle),
+              content: const Text(
+                'การกระทำนี้ไม่สามารถแก้ไขได้ภายหลัง ต้องการยืนยันการกระทำหรือไม่?',
+                style: kContentTextStyle),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text(
+                    'ยกเลิก',
+                    style: kContentTextStyle,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }
+                ),
+                TextButton(
+                  child: const Text(
+                    'ยืนยัน',
+                    style: kContentTextStyle,
+                  ),
+                  onPressed: ()async{
+                    setState((){
+                      _errorMessage = '';
+                    });
+                    try{
+                      await StockService.receiveStockProduct(widget.stockProduct.sspId);
+                      widget.operation['StockDashboardPage']();
+                      widget.operation['FarmProductPage']();
+                      widget.operation['SellingProductListPage']();
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    }catch(err){
+                      setState((){
+                        _errorMessage = err.toString();
+                        Navigator.pop(context);
+                      });
+                    }
+                  },
+                )
+              ],
+            )
+        );
       };
     }else if(widget.stockProduct.sspStatus=='DELIVERED'){
       return ()async{
-        setState((){
-          _errorMessage = '';
-        });
-        try{
-          await StockService.payStockProduct(widget.stockProduct.sspId);
-          widget.operation['StockDashboardPage']();
-          widget.operation['FarmProductPage']();
-          widget.operation['SellingProductListPage']();
-          Navigator.pop(context);
-        }catch(err){
-          setState((){
-            _errorMessage = err.toString();
+        if(pic==null){
+          setState(() {
+            _errorMessage='กรุณาเพิ่มหลักฐานการชำระเงิน';
           });
+        }else{
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) =>
+              AlertDialog(
+                title: const Text('คำเตือน',
+                  style: kHeadingTextStyle),
+                content: const Text(
+                  'การกระทำนี้ไม่สามารถแก้ไขได้ภายหลัง ต้องการยืนยันการกระทำหรือไม่?',
+                  style: kContentTextStyle),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text(
+                      'ยกเลิก',
+                      style: kContentTextStyle,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }
+                  ),
+                  TextButton(
+                    child: const Text(
+                      'ยืนยัน',
+                      style: kContentTextStyle,
+                    ),
+                    onPressed: ()async{
+                      setState((){
+                        _errorMessage = '';
+                      });
+                      try{
+                        await StockService.payStockProduct(widget.stockProduct.sspId,pic);
+                        widget.operation['StockDashboardPage']();
+                        widget.operation['FarmProductPage']();
+                        widget.operation['SellingProductListPage']();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      }catch(err){
+                        setState((){
+                          _errorMessage = err.toString();
+                          Navigator.pop(context);
+                        });
+                      }
+                    }
+                  )
+                ],
+              )
+          );
         }
       };
     }else{
       return (){};
     }
   }
-
+  File? pic;
+  final picker = ImagePicker();
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera,maxHeight: 1024,maxWidth: 1024);
+    setState(() {
+      pic = File(pickedFile!.path);
+    });
+  }
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery,maxHeight: 1024,maxWidth: 1024);
+    setState(() {
+      pic = File(pickedFile!.path);
+    });
+  }
   String _errorMessage = '';
 
   @override
@@ -95,7 +181,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: SingleChildScrollView(
@@ -105,7 +191,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
               height: screenHeight * 0.13,
               padding: EdgeInsets.fromLTRB(
                   screenWidth * 0.1, 0, screenWidth * 0.1, 0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: mediumBlue,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10),
@@ -121,9 +207,9 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                   ),
                   Row(
                     children: [
-                      Text('สถานะ ', style: kContentTextWhite),
+                      const Text('สถานะ ', style: kContentTextWhite),
                       Text(
-                        '${widget.stockProduct.getStatus()}',
+                        widget.stockProduct.getStatus(),
                         style: widget.stockProduct.getStatusTextStyle(),
                       ),
                     ],
@@ -158,7 +244,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
+                            const Text(
                               'วันที่เริ่มปลูก: ',
                               style: kContentTextStyle,
                             ),
@@ -177,7 +263,7 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
+                            const Text(
                               'วันที่เก็บเกี่ยว: ',
                               style: kContentTextStyle,
                             ),
@@ -193,30 +279,6 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                       )
                     ],
                   ),
-                  // Row(
-                  //   children: [
-                  //     Text(
-                  //       'ปริมาณที่คาดว่าจะส่งขาย:   ',
-                  //       style: kContentTextStyle,
-                  //     ),
-                  //     Text(
-                  //       '$predictingToSale   $unit',
-                  //       style: kContentTextStyle,
-                  //     ),
-                  //     SizedBox(
-                  //       height: screenHeight * 0.04,
-                  //     )
-                  //   ],
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Text(
-                  //       'เป็นราคา:   ',
-                  //       style: kContentTextStyle,
-                  //     ),
-                  //     Text('$totalPrice   บาท', style: kContentTextStyle),
-                  //   ],
-                  // ),
                   Row(
                     children: [
                       SizedBox(
@@ -229,11 +291,11 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                               widget.farmProduct.status=='PLANTING'?'ปริมาณที่จะส่งขาย*':'ปริมาณที่ส่งขาย',
                               style: kContentTextStyle,
                             ),
-                            Text(
+                            const Text(
                               'เป็นราคา',
                               style: kContentTextStyle,
                             ),
-                            Text(
+                            const Text(
                               'วันที่ส่งผลิตภัณฑ์',
                               style: kContentTextStyle,
                             ),
@@ -271,11 +333,11 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                               widget.stockProduct.unit,
                               style: kContentTextStyle,
                             ),
-                            Text(
+                            const Text(
                               'บาท',
                               style: kContentTextStyle,
                             ),
-                            Text(
+                            const Text(
                               '',
                               style: kContentTextStyle,
                             ),
@@ -285,7 +347,66 @@ class _SellingProductStatusPage extends State<SellingProductStatusPage> {
                     ],
                   ),
                   SizedBox(height: screenHeight * 0.05),
-                  isButtonShow()? PintoButton(label: buttonLabel(), function: buttonFunc(context), buttonColor: deepBlue):SizedBox(),
+                  widget.stockProduct.sspStatus=='PREPARE'?
+                  SizedBox():
+                  pic != null ? Container(
+                    width: screenWidth*0.8,
+                    height: screenWidth*1.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: FileImage(pic!),
+                      ),
+                    ),
+                  ):widget.stockProduct.tranPic != null ?
+                  Container(
+                    width: screenWidth*0.8,
+                    height: screenWidth*1.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(widget.stockProduct.tranPic!),
+                      ),
+                    ),
+                  ):
+                  Container(
+                    width: screenWidth*0.8,
+                    height: screenWidth*1.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: deepGrayBackground
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('เพิ่มหลักฐานการชำระเงิน'),
+                        SizedBox(
+                          height: screenHeight * 0.01,
+                        ),
+                        PintoButton(
+                          label: '+ คลังรูปภาพ',
+                          function: getImageFromGallery,
+                          buttonColor: mediumGrayBackground,
+                          textStyle: blackSmallNormalTextStyle,
+                          // width: screenWidth * 0.25,
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.01,
+                        ),
+                        PintoButton(
+                          label: '+ ถ่ายภาพ',
+                          function: getImageFromCamera,
+                          buttonColor: mediumGrayBackground,
+                          textStyle: blackSmallNormalTextStyle,
+                          // width: screenWidth * 0.25,
+                        ),
+                      ],
+                    )
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  isButtonShow()? PintoButton(label: buttonLabel(), function: buttonFunc(context), buttonColor: deepBlue):const SizedBox(),
                   Text(_errorMessage,style: kNormalErrorTextStyle,),
                 ],
               ),

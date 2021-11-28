@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:http_parser/http_parser.dart';
 import 'package:pinto_admin_flutter/api/api.dart';
 import 'package:pinto_admin_flutter/model/stock.dart';
 import 'package:pinto_admin_flutter/model/stock_preview.dart';
@@ -81,18 +84,24 @@ class StockService {
       throw err.toString();
     }
   }
-  static Future<void> payStockProduct(int sspId) async {
+  static Future<void> payStockProduct(int sspId,File? img) async {
     try {
-      await Api.dio.put('/stock-product/pay',
-        options: Options(
-          headers: {
-            'userId': Auth.user.userId,
-          },
-        ),
-        data: {
-          'sspId': sspId
-        },
-      );
+      if(img != null){
+        String fileName = img.path.split('/').last;
+        FormData formData = FormData.fromMap({
+          'sspId': sspId,
+          'farmerTransaction':await MultipartFile.fromFile(img.path, filename:fileName,contentType: MediaType('image', fileName.split('.').last))
+        });
+        await Api.dio.put('/stock-product/pay',
+          data: formData,
+          options: Options(
+            headers: {
+              'userId':Auth.user.userId,
+            },
+            contentType: 'multipart/form-data',
+          ),
+        );
+      }
     } on DioError catch (err) {
       throw err.response!.data['message'];
     } catch (err) {
