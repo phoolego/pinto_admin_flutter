@@ -30,7 +30,7 @@ then, set the value of baseUrl to your current url of backend service
 
 - Edit key.properties file follow this [doc](https://docs.flutter.dev/deployment/android#reference-the-keystore-from-the-app)
 
-- run command
+- run command in project directory
 ```
 flutter build apk
 ```
