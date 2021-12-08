@@ -262,7 +262,7 @@ class _AdminAddProductPageState extends State<AdminAddProductPage> {
                 height: screenHeight * 0.03,
               ),
               PintoButton(
-                label: 'เพิ่มผลิตภัณฑ์(test)',
+                label: 'เพิ่มผลิตภัณฑ์',
                 function: () async{
                   if (_formKey.currentState!.validate()) {
                     // await ProductService.addProductType(name, nameEng, priceBuy, priceSell, unitAmount, pic);
