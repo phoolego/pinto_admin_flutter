@@ -73,9 +73,13 @@ SideMenu({this.firstName, this.lastName, this.role});
             ),
             ListTile(
               leading: Icon(Icons.shopping_cart),
-              title: Text('ยืนยันการจ่ายเงินจากลูกค้า',style: kContentTextStyle),
+              title: Text('จัดการคำสั่งซื้อ',style: kContentTextStyle),
               onTap: (){
-               print('ยืนยันการจ่ายเงินจากลูกค้า');
+                if(currentPage=='จัดการคำสั่งซื้อ'){
+                  Navigator.pop(context);
+                }else{
+                  Navigator.pushReplacementNamed(context, '/order');
+                }
               },
             ),
             ListTile(
