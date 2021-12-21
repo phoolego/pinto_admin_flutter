@@ -17,6 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Setting up
 
+to get project plugin and dependency run
+```
+flutter pub get
+```
 to make application connect to backend service go to
 ```
 ./lib/api/api.dart
