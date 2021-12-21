@@ -1,4 +1,4 @@
-# pinto_admin_flutter
+# pinto_flutter
 
 A new Flutter project.
 
@@ -17,6 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Setting up
 
+to get project plugin and dependency run
+```
+flutter pub get
+```
 to make application connect to backend service go to
 ```
 ./lib/api/api.dart
@@ -24,12 +28,18 @@ to make application connect to backend service go to
 then, set the value of baseUrl to your current url of backend service
 
 ## Build app apk for android
+
+### Recommend to create new keystore for build app apk
 - Create an upload keystore follow this [doc](https://docs.flutter.dev/deployment/android#create-an-upload-keystore)
 
 - then store your keystore in private directory
 
 - Edit key.properties file follow this [doc](https://docs.flutter.dev/deployment/android#reference-the-keystore-from-the-app)
 
+### Or using existing keystore
+- By check ./android/key.properties that it has correct keyPassword and storePassword or not
+
+### Build apk file
 - run command in project directory
 ```
 flutter build apk

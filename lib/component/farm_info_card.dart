@@ -30,70 +30,62 @@ class FarmInfoCard extends StatelessWidget {
     return InkWell(
       onTap: function,
       child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        alignment: AlignmentDirectional.center,
+        height: screenHeight*0.17,
+        width: screenWidth * 0.6,
+        margin: EdgeInsets.fromLTRB(screenWidth*0.1, 0, screenWidth*0.1, 10),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: mediumBlue,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment:  MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              alignment: AlignmentDirectional.center,
-              height: screenHeight*0.17,
-              width: screenWidth * 0.6,
-              margin: EdgeInsets.fromLTRB(screenWidth*0.1, 0, screenWidth*0.1, 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: mediumBlue,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                farmName,
-                                style: kContentTextWhite,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    'คลัง: ${inFarm} ',
-                                    style: kContentTextWhite,
-                                  ),
-                                  Text(
-                                    '${unit}',
-                                    style: kContentTextWhite,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(child: Text(' ')),
-                  //sorry for lazy na ;-;
-                  SizedBox(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        farmName,
+                        style: kContentTextWhite,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                              padding: EdgeInsets.only(top: 10, right: 10),
-                              child: Icon(
-                                Icons.more_horiz,
-                                color: deepWhite,
-                              )),
+                          Text(
+                            'คลัง: ${inFarm} ',
+                            style: kContentTextWhite,
+                          ),
+                          Text(
+                            '${unit}',
+                            style: kContentTextWhite,
+                          ),
                         ],
-                      ))
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
+            SizedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 10, right: 20),
+                      child: const Icon(
+                        Icons.more_horiz,
+                        color: deepWhite,
+                      )
+                    ),
+                  ],
+                )
+            )
           ],
         ),
       ),
