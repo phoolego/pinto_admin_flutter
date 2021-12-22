@@ -35,7 +35,7 @@ class _OrderListPageState extends State<OrderListPage> {
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: const Text(
-          'รายการจองผลิตภัณฑ์',
+          'รายการสั่งซื้อผลิตภัณฑ์',
           style: kAppbarTextStyle,
         ),
       ),

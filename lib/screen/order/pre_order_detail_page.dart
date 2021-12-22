@@ -14,7 +14,7 @@ class PreOrderDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: deepBlue,
         title: const Text(
-          'การสั่งจอง',
+          'การสั่งซื้อ',
           style: kAppbarTextStyle,
         ),
       ),
