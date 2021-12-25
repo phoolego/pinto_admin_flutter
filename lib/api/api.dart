@@ -5,6 +5,6 @@ class Api {
     //ios emulator http://127.0.0.1:3000 or localhost
     //android emulator http://10.0.2.2:3000
     //dev server http://pintobangkachao.sit.kmutt.ac.th:3000
-    baseUrl: 'http://pintobangkachao.sit.kmutt.ac.th:3000',
+    baseUrl: 'http://10.0.2.2:3000',
   ));
 }
