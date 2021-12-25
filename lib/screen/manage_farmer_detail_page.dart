@@ -42,7 +42,7 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                     Expanded(
                       // width: 0.48 * screenWidth,
                       child: Text(
-                        '${farmer.firstname} \n${farmer.lastname} \n${isRequest?'ขอสิทธิ์เกษตกร':'เกษตกร'}',
+                        '${farmer.firstname} \n${farmer.lastname} \n${farmer.getRole()}',
                         textAlign: TextAlign.left,
                         style: kHeadingTextStyle,
                       ),
@@ -83,8 +83,56 @@ class ManageFarmerDetailtPage extends StatelessWidget {
               ),
               SizedBox(height: screenHeight*0.01,),
               isRequest?
-                PintoButton(
-                  label: 'ให้สิทธิ์เกษตกร',
+                Center(
+                  child: PintoButton(
+                    label: 'ให้สิทธิ์เกษตกร',
+                    function: (){
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) =>
+                          AlertDialog(
+                            title: const Text('คำเตือน',
+                                style: kHeadingTextStyle),
+                            content: const Text(
+                                'ยืนยันการให้สิทธิ์',
+                                style: kContentTextStyle),
+                            actions: <Widget>[
+                              TextButton(
+                                  child: const Text(
+                                    'ยกเลิก',
+                                    style: kContentTextStyle,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  }),
+                              TextButton(
+                                child: const Text(
+                                  'ยืนยัน',
+                                  style: kContentTextStyle,
+                                ),
+                                onPressed: () async {
+                                  try{
+                                    await FarmerService.approveFarmer(farmer.userId);
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(context, '/manageFarmer');
+                                  }catch(err){
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              )
+                            ],
+                          ),
+                      );
+                    },
+                  ),
+                ):
+                const SizedBox(),
+              SizedBox(height: screenHeight*0.01,),
+              isRequest?
+              Center(
+                child: PintoButton(
+                  label: 'ไม่อนุมัติสิทธิ์',
+                  buttonColor: notYetRed,
                   function: (){
                     showDialog<String>(
                       context: context,
@@ -93,7 +141,7 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                           title: const Text('คำเตือน',
                               style: kHeadingTextStyle),
                           content: const Text(
-                              'กด "ตกลง" เพื่อยืนยันให้สิทธิ์เกษตกร',
+                              'ยืนยันการไม่อนุมัติสิทธิ์',
                               style: kContentTextStyle),
                           actions: <Widget>[
                             TextButton(
@@ -106,12 +154,12 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                                 }),
                             TextButton(
                               child: const Text(
-                                'ตกลง',
+                                'ยืนยัน',
                                 style: kContentTextStyle,
                               ),
                               onPressed: () async {
                                 try{
-                                  await FarmerService.approveFarmer(farmer.userId);
+                                  await FarmerService.rejectFarmer(farmer.userId);
                                   Navigator.pop(context);
                                   Navigator.pushReplacementNamed(context, '/manageFarmer');
                                 }catch(err){
@@ -123,8 +171,99 @@ class ManageFarmerDetailtPage extends StatelessWidget {
                         ),
                     );
                   },
-                ):
-                const SizedBox(),
+                ),
+              ):
+              const SizedBox(),
+              farmer.role=='ADMIN'?
+              Center(
+                child: PintoButton(
+                  label: 'ลดสิทธิ์เป็นเกษตกร',
+                  function: (){
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          AlertDialog(
+                            title: const Text('คำเตือน',
+                                style: kHeadingTextStyle),
+                            content: const Text(
+                                'ยืนยันการลดสิทธิ์ผู้ใช้จากผู้ดูแลระบบเป็นเกษตกร',
+                                style: kContentTextStyle),
+                            actions: <Widget>[
+                              TextButton(
+                                  child: const Text(
+                                    'ยกเลิก',
+                                    style: kContentTextStyle,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  }),
+                              TextButton(
+                                child: const Text(
+                                  'ยืนยัน',
+                                  style: kContentTextStyle,
+                                ),
+                                onPressed: () async {
+                                  try{
+                                    await FarmerService.setToFarmer(farmer.userId);
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(context, '/manageFarmer');
+                                  }catch(err){
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              )
+                            ],
+                          ),
+                    );
+                  },
+                ),
+              ):
+              const SizedBox(),
+              farmer.role=='FARMER'?
+              Center(
+                child: PintoButton(
+                  label: 'ให้สิทธิ์เป็นผูดูแลระบบ',
+                  function: (){
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          AlertDialog(
+                            title: const Text('คำเตือน',
+                                style: kHeadingTextStyle),
+                            content: const Text(
+                                'ยืนยันการให้สิทธิ์จากเกษตกรเป็นผูดูแลระบบ',
+                                style: kContentTextStyle),
+                            actions: <Widget>[
+                              TextButton(
+                                  child: const Text(
+                                    'ยกเลิก',
+                                    style: kContentTextStyle,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  }),
+                              TextButton(
+                                child: const Text(
+                                  'ยืนยัน',
+                                  style: kContentTextStyle,
+                                ),
+                                onPressed: () async {
+                                  try{
+                                    await FarmerService.gainAdminRole(farmer.userId);
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(context, '/manageFarmer');
+                                  }catch(err){
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              )
+                            ],
+                          ),
+                    );
+                  },
+                ),
+              ):
+              const SizedBox(),
             ],
           ),
         ),

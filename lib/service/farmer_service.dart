@@ -18,10 +18,10 @@ class FarmerService{
       )).toList();
       return farmer;
     } on DioError catch (err) {
-      return err.response!.data['message'];
+      throw err.response!.data['message'];
     } catch (err){
       print(err.toString());
-      throw err;
+      rethrow;
     }
   }
 
@@ -39,10 +39,10 @@ class FarmerService{
       )).toList();
       return farmer;
     } on DioError catch (err) {
-      return err.response!.data['message'];
+      throw err.response!.data['message'];
     } catch (err){
       print(err.toString());
-      throw err;
+      rethrow;
     }
   }
 
@@ -59,10 +59,67 @@ class FarmerService{
         }
       );
     } on DioError catch (err) {
-      return err.response!.data['message'];
+      throw err.response!.data['message'];
     } catch (err){
       print(err.toString());
-      throw err;
+      rethrow;
+    }
+  }
+  static Future<void> rejectFarmer(int farmerId) async{
+    try {
+      await Api.dio.put('/reject-farmer',
+          options: Options(
+            headers: {
+              'userId':Auth.user.userId
+            },
+          ),
+          data: {
+            'userId': farmerId
+          }
+      );
+    } on DioError catch (err) {
+      throw err.response!.data['message'];
+    } catch (err){
+      print(err.toString());
+      rethrow;
+    }
+  }
+  static Future<void> gainAdminRole(int farmerId) async{
+    try {
+      await Api.dio.put('/gain-admin',
+          options: Options(
+            headers: {
+              'userId':Auth.user.userId
+            },
+          ),
+          data: {
+            'userId': farmerId
+          }
+      );
+    } on DioError catch (err) {
+      throw err.response!.data['message'];
+    } catch (err){
+      print(err.toString());
+      rethrow;
+    }
+  }
+  static Future<void> setToFarmer(int farmerId) async{
+    try {
+      await Api.dio.put('/set-farmer',
+          options: Options(
+            headers: {
+              'userId':Auth.user.userId
+            },
+          ),
+          data: {
+            'userId': farmerId
+          }
+      );
+    } on DioError catch (err) {
+      throw err.response!.data['message'];
+    } catch (err){
+      print(err.toString());
+      rethrow;
     }
   }
 }
